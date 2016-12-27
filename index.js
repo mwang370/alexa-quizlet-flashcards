@@ -10,7 +10,8 @@ var currentSet = null;
 skill.launch(function(request, response) {
     console.log(request.sessionDetails.accessToken);
     var prompt = 'Welcome to the flash cards skill. To begin, tell me the name of a set';
-    response.say(prompt).reprompt(prompt).shouldEndSession(false);
+    var reprompt = 'I didn\'t hear a set name. Tell me a set name to begin studying';
+    response.say(prompt).reprompt(reprompt).shouldEndSession(false);
 });
 
 skill.intent('startStudyingIntent', {
