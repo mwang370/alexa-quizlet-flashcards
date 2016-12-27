@@ -5,6 +5,7 @@ var Alexa = require('alexa-app');
 var skill = new Alexa.app('flashcards');
 var FlashcardsDataHelper = require('./flashcards_data_helper.js');
 var tempAccessToken = 'XZnfQCeYRxRyN6B6D8pkrQgKy7zD7wEkMqdTqfzJ';
+var currentSet = null;
 
 skill.launch(function(request, response) {
     console.log(request.sessionDetails.accessToken);
@@ -31,14 +32,25 @@ function(request, response) {
         console.log(setName);
         var flashcardsHelper = new FlashcardsDataHelper();
         flashcardsHelper.getSets().then(function(allSets) {
-            console.log(allSets);
-            var prompt = "I have just retrieved all sets";
-            var reprompt = "I have just retrieved all sets";
+            for (var i = 0; i < allSets.length; i++) {
+                if (allSets[i].title === setName) {
+                    currentSet = allSets[i];
+                }
+            }
+            var prompt = "I have just retrieved the set for " + setName + ". Your first card is undefined";
+            var reprompt = "Your first card is undefined";
+            if (currentSet === null) {
+                prompt = "I could not retrieve the set for " + setName + ". Tell me another set name."
+                reprompt = "Tell me another set name."
+            }
+            console.log(currentSet);
+            response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        }).catch(function(err) {
+            console.log(err.statusCode);
+            var prompt = 'I could not retrieve the set.';
+          response.say(prompt).reprompt(prompt).shouldEndSession(false).send();
         });
-        var prompt = "You are now studying " + setName + ". Your first card is abhor.";
-        var reprompt = "Your first card is abhor.";
-        response.say(prompt).reprompt(reprompt).shouldEndSession(false);
-        return true;
+        return false;
     }
 });
 

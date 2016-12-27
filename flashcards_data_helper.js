@@ -20,6 +20,12 @@ FlashcardsDataHelper.prototype.getSets = function() {
         json: true
     };
     return requestPromise(options)
-}
+};
+
+// FlashcardDataHelper.prototype.findSet = function(setName, allSets) {
+//     for (var set in allSets) {
+//         console.log(set.title);
+//     }
+// };
 
 module.exports = FlashcardsDataHelper;
