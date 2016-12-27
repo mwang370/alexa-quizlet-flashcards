@@ -4,12 +4,12 @@ var _ = require('lodash');
 var Alexa = require('alexa-app');
 var skill = new Alexa.app('flashcards');
 var FlashcardsDataHelper = require('./flashcards_data_helper.js');
-var tempAccessToken = 'XZnfQCeYRxRyN6B6D8pkrQgKy7zD7wEkMqdTqfzJ';
+var WordBank = require('./word_bank.js');
 var currentSet = null;
+var currentWordBank = null;
 
 skill.launch(function(request, response) {
-    console.log(request.sessionDetails.accessToken);
-    var prompt = 'Welcome to the flash cards skill. To begin, tell me the name of a set';
+    var prompt = 'Ready to study? To begin, tell me the name of a set';
     var reprompt = 'I didn\'t hear a set name. Tell me a set name to begin studying';
     response.say(prompt).reprompt(reprompt).shouldEndSession(false);
 });
@@ -25,14 +25,15 @@ skill.intent('startStudyingIntent', {
 function(request, response) {
     var setName = request.slot('SETNAME');
     var reprompt = 'Tell me a set name to begin studying';
+    var accessToken = request.sessionDetails.accessToken;
     if (_.isEmpty(setName)) {
         var prompt = "I didn\'t hear a set name. Tell me a set name.";
         response.say(prompt).reprompt(reprompt).shouldEndSession(false);
         return true;
     } else {
-        console.log(setName);
+        console.log("set name: " + setName);
         var flashcardsHelper = new FlashcardsDataHelper();
-        flashcardsHelper.getSets().then(function(allSets) {
+        flashcardsHelper.getSets(accessToken).then(function(allSets) {
             for (var i = 0; i < allSets.length; i++) {
                 if (allSets[i].title === setName) {
                     currentSet = allSets[i];
