@@ -8,9 +8,9 @@ var _ = require('lodash');
 var Alexa = require('alexa-app');
 var skill = new Alexa.app('flashcards');
 var FlashcardsDataHelper = require('./flashcards_data_helper.js');
-var WordBank = require('./word_bank.js');
+var CardBank = require('./card_bank.js');
 var currentSet = null;
-var currentWordBank = null;
+var currentCardBank = null;
 
 /*
 Intent Helper Methods
@@ -39,18 +39,18 @@ var startStudyingIntentFunction = function(request, response) {
                 }
             }
             if (currentSet !== null) {
-                currentWordBank = new WordBank();
+                currentCardBank = new CardBank();
                 for (var card in currentSet.terms) {
                     var term = currentSet.terms[card].term;
                     var definition = currentSet.terms[card].definition;
-                    currentWordBank.addWord(term, definition);
+                    currentCardBank.addCard(term, definition);
                 }
-                currentWordBank.shuffle();
-                console.log("word bank: ");
-                console.log(currentWordBank);
-                var currentWord = currentWordBank.getNextWord();
-                var prompt = "I have just retrieved the set for " + setName + ". Your first card is " + currentWord;
-                var reprompt = "Your first card is " + currentWord;
+                currentCardBank.shuffle();
+                console.log("card bank: ");
+                console.log(currentCardBank);
+                var nextCard = currentCardBank.getNextCard();
+                var prompt = "I have just retrieved the set for " + setName + ". Your first card is " + nextCard;
+                var reprompt = "Your first card is " + nextCard;
             }
             if (currentSet === null) {
                 prompt = "I could not retrieve the set for " + setName + ". Tell me another set name."
@@ -66,6 +66,17 @@ var startStudyingIntentFunction = function(request, response) {
     }
 };
 
+var shuffleIntentFunction = function(request, response) {
+    currentCardBank.shuffle();
+    var nextCard = currentCardBank.getNextCard();
+    var prompt = "OK. I just shuffled the cards. Your next card is " + nextCard;
+    var reprompt = "Your next card is " + nextCard;
+    response.say(prompt).reprompt(reprompt).shouldEndSession(false);
+    console.log("card bank: ");
+    console.log(currentCardBank);
+    return true;
+}
+
 var cancelIntentFunction = function(request, response) {
     console.log("Cancel intent triggered");
     response.say('Goodbye!').shouldEndSession(true);
@@ -74,44 +85,48 @@ var cancelIntentFunction = function(request, response) {
 
 var correctIntentFunction = function(request, response) {
     console.log("Correct intent triggered");
-    currentWordBank.gotCorrect();
-    var prompt = "Good Job! Your next word is undefined.";
-    var reprompt = "Your next word is undefined.";
+    currentCardBank.gotCorrect();
+    var nextCard = currentCardBank.getNextCard();
+    var prompt = "Good Job! Your next card is " + nextCard;
+    var reprompt = "Your next card is " + nextCard;
     response.say(prompt).reprompt(reprompt).shouldEndSession(false);
-    console.log("word bank: ");
-    console.log(currentWordBank);
+    console.log("card bank: ");
+    console.log(currentCardBank);
     return true;
 };
 
 var wrongIntentFunction = function(request, response) {
     console.log("Wrong intent function triggered");
-    currentWordBank.gotWrong();
-    var prompt = "Almost. We\'ll come back to that one later. Your next word is undefined.";
-    var reprompt = "Your next word is undefined.";
+    currentCardBank.gotWrong();
+    var nextCard = currentCardBank.getNextCard();
+    var prompt = "Almost. We\'ll come back to that one later. Your next card is " + nextCard;
+    var reprompt = "Your next card is " + nextCard;
     response.say(prompt).reprompt(reprompt).shouldEndSession(false);
-    console.log("word bank: ");
-    console.log(currentWordBank);
+    console.log("card bank: ");
+    console.log(currentCardBank);
     return true;
 };
 
 var skipIntentFunction = function(request, response) {
     console.log("Skip intent function triggered");
-    currentWordBank.gotWrong();
-    var prompt = "OK, let\'s skip that one. We\'ll come back to that one later. Your next word is undefined.";
-    var reprompt = "Your next word is undefined.";
+    currentCardBank.gotWrong();
+    var nextCard = currentCardBank.getNextCard();
+    var prompt = "OK, let\'s skip that one. We\'ll come back to it later. Your next card is " + nextCard;
+    var reprompt = "Your next card is " + nextCard;
     response.say(prompt).reprompt(reprompt).shouldEndSession(false);
-    console.log("word bank: ");
-    console.log(currentWordBank);
+    console.log("card bank: ");
+    console.log(currentCardBank);
     return true;
 };
 
 var repeatIntentFunction = function(request, response) {
     console.log("Repeat intent function triggered");
-    var prompt = "No problem, I'll repeat it. Your word is undefined";
-    var reprompt = "Your word is undefined";
+    var nextCard = currentCardBank.getNextCard();
+    var prompt = "No problem, I'll repeat it. Your card is " + nextCard;
+    var reprompt = "Your card is " + nextCard;
     response.say(prompt).reprompt(reprompt).shouldEndSession(false);
-    console.log("word bank: ");
-    console.log(currentWordBank);
+    console.log("card bank: ");
+    console.log(currentCardBank);
     return true;
 }
 
@@ -124,9 +139,14 @@ skill.intent('startStudyingIntent', {
         'SETNAME': 'SETNAMES'
     },
     'utterances': [
-        '{start|open|begin|study} {|studying|reviewing} {|flashcards|cards|set} {|for} {-|SETNAME}'
+        '{start|open|begin|study} {|studying|reviewing} {|flashcards|cards|set|words} {|for} {-|SETNAME}'
     ]
 }, startStudyingIntentFunction);
+skill.intent('shuffleIntent', {
+    'utterances': [
+        '{shuffle|mix|change} {|up} {|the} {|cards|terms|words|set}'
+    ]
+}, shuffleIntentFunction);
 skill.intent('AMAZON.CancelIntent', {}, cancelIntentFunction);
 skill.intent('AMAZON.StopIntent', {}, cancelIntentFunction);
 skill.intent('AMAZON.YesIntent', {}, correctIntentFunction);
