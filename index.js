@@ -164,6 +164,14 @@ var knowIntentFunction = function(request, response) {
     if (currentCardBank.numCards === 0) {
         // finished
         var prompt = "Congratulations, you have finished the set for " + currentSetName +". Open flash cards again to review this set or to start studying another set.";
+        if (currentSet !== null) {
+            var percentFinished = Math.round(currentCardBank.numFinished * 100 / (currentCardBank.numFinished + currentCardBank.numCards));
+            response.card("Set Studied: " + currentSetName,
+                "Cards Finished: " + currentCardBank.numFinished +
+                "\nCards Left: " + currentCardBank.numCards +
+                "\nGood work! You made it through " + percentFinished +
+                "% of the cards in this set.");
+        }
         response.say(prompt).shouldEndSession(true);
         return true;
     } else {
@@ -211,6 +219,14 @@ var correctIntentFunction = function(request, response) {
     if (currentCardBank.numCards === 0) {
         // finished
         var prompt = "Congratulations, you have finished the set for " + currentSetName +". Open flash cards again to review this set or to start studying another set.";
+        if (currentSet !== null) {
+            var percentFinished = Math.round(currentCardBank.numFinished * 100 / (currentCardBank.numFinished + currentCardBank.numCards));
+            response.card("Set Studied: " + currentSetName,
+                "Cards Finished: " + currentCardBank.numFinished +
+                "\nCards Left: " + currentCardBank.numCards +
+                "\nGood work! You made it through " + percentFinished +
+                "% of the cards in this set.");
+        }
         response.say(prompt).shouldEndSession(true);
         return true;
     } else {
@@ -279,6 +295,14 @@ var repeatIntentFunction = function(request, response) {
 
 var stopIntentFunction = function(request, response) {
     console.log("Cancel intent triggered");
+    if (currentSet !== null) {
+        var percentFinished = Math.round(currentCardBank.numFinished * 100 / (currentCardBank.numFinished + currentCardBank.numCards));
+        response.card("Set Studied: " + currentSetName,
+            "Cards Finished: " + currentCardBank.numFinished +
+            "\nCards Left: " + currentCardBank.numCards +
+            "\nGood work! You made it through " + percentFinished +
+            "% of the cards in this set.");
+    }
     response.say('Good work. Let\'s take a well deserved break.').shouldEndSession(true);
     return true;
 };
