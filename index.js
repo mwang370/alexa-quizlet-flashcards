@@ -19,7 +19,7 @@ var launchIntentFunction = function(request, response) {
     var prompt = 'Ready to study? To begin, tell me the name of a set';
     var reprompt = 'I didn\'t hear a set name. Tell me a set name to begin studying';
     response.say(prompt).reprompt(reprompt).shouldEndSession(false);
-}
+};
 
 var startStudyingIntentFunction = function(request, response) {
     console.log("Start studying event triggered");
@@ -51,10 +51,9 @@ var startStudyingIntentFunction = function(request, response) {
                 var nextCard = currentCardBank.getNextCard();
                 var prompt = "I have just retrieved the set for " + setName + ". Lets get started. Your first card is " + nextCard;
                 var reprompt = "Your first card is " + nextCard;
-            }
-            if (currentSet === null) {
-                prompt = "I could not retrieve the set for " + setName + ". Tell me another set name."
-                reprompt = "Tell me another set name."
+            } else {
+                prompt = "I could not retrieve the set for " + setName + ". Tell me another set name.";
+                reprompt = "Tell me another set name.";
             }
             response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
         }).catch(function(err) {
@@ -66,7 +65,18 @@ var startStudyingIntentFunction = function(request, response) {
     }
 };
 
+var answerIntentFunction = function(request, response) {
+    console.log("Answer intent triggered");
+    var currentCard = currentCardBank.getNextCard();
+    var currentCardFlipSide = currentCardBank.getNextCardFlipSide();
+    var prompt = "The correct answer was " + currentCardFlipSide + ". Did you get it correct?";
+    var reprompt = "Did you get it correct?";
+    response.say(prompt).reprompt(reprompt).shouldEndSession(false);
+    return true;
+};
+
 var shuffleIntentFunction = function(request, response) {
+    console.log("Shuffle intent triggered");
     currentCardBank.shuffle();
     var nextCard = currentCardBank.getNextCard();
     var prompt = "OK. I just shuffled the cards. Your next card is " + nextCard;
@@ -78,7 +88,9 @@ var shuffleIntentFunction = function(request, response) {
 };
 
 var flipSidesIntentFunction = function(request, response) {
+    console.log("Flip sides intent triggered");
     currentCardBank.flipSides();
+    currentCardBank.shuffle();
     var nextCard = currentCardBank.getNextCard();
     var prompt = "OK. We are now using the other side of the cards. Your next card is " + nextCard;
     var reprompt = "Your next card is " + nextCard;
@@ -86,11 +98,11 @@ var flipSidesIntentFunction = function(request, response) {
     console.log("card bank: ");
     console.log(currentCardBank);
     return true;
-}
+};
 
 var cancelIntentFunction = function(request, response) {
     console.log("Cancel intent triggered");
-    response.say('Goodbye!').shouldEndSession(true);
+    response.say('Good work! Let\'s take a well deserved break.').shouldEndSession(true);
     return true;
 };
 
@@ -132,14 +144,14 @@ var skipIntentFunction = function(request, response) {
 
 var repeatIntentFunction = function(request, response) {
     console.log("Repeat intent function triggered");
-    var nextCard = currentCardBank.getNextCard();
-    var prompt = "No problem, I'll repeat it. Your card is " + nextCard;
-    var reprompt = "Your card is " + nextCard;
+    var currentCard = currentCardBank.getNextCard();
+    var prompt = "No problem, I'll repeat it. Your card is " + currentCard;
+    var reprompt = "Your card is " + currentCard;
     response.say(prompt).reprompt(reprompt).shouldEndSession(false);
     console.log("card bank: ");
     console.log(currentCardBank);
     return true;
-}
+};
 
 /*
 Intents
@@ -153,6 +165,11 @@ skill.intent('startStudyingIntent', {
         '{start|open|begin|study} {|studying|reviewing} {|flashcards|cards|set|words} {|for} {-|SETNAME}'
     ]
 }, startStudyingIntentFunction);
+skill.intent('answerIntent', {
+    'utterances': [
+        '{|the} {answer|definition|term|word|it|other side} {is}'
+    ]
+}, answerIntentFunction);
 skill.intent('shuffleIntent', {
     'utterances': [
         '{shuffle|mix|change} {|up} {|the} {|cards|terms|words|set}'
@@ -160,7 +177,7 @@ skill.intent('shuffleIntent', {
 }, shuffleIntentFunction);
 skill.intent('flipSidesIntent', {
     'utterances': [
-        '{flip|use the other|change} {|sides} {|the|of} {|card}'
+        '{flip|use the opposite|change|use the other} {|sides} {|the|of} {|card}'
     ]
 }, flipSidesIntentFunction);
 skill.intent('AMAZON.CancelIntent', {}, cancelIntentFunction);
