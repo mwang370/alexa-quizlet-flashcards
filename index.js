@@ -277,12 +277,11 @@ var repeatIntentFunction = function(request, response) {
     return true;
 };
 
-var cancelIntentFunction = function(request, response) {
+var stopIntentFunction = function(request, response) {
     console.log("Cancel intent triggered");
     response.say('Good work. Let\'s take a well deserved break.').shouldEndSession(true);
     return true;
 };
-
 
 /*
 Intents
@@ -331,11 +330,16 @@ skill.intent('dontKnowIntent', {
         '{|I} {don\'t know} {this|the answer} {|one}'
     ]
 }, dontKnowIntentFunction);
+skill.intent('doneIntent', {
+    'utterances': [
+        '{|I\'m} {done|finished} {|studying}'
+    ]
+}, stopIntentFunction);
 skill.intent('AMAZON.YesIntent', {}, correctIntentFunction);
 skill.intent('AMAZON.NoIntent', {}, wrongIntentFunction);
 skill.intent('AMAZON.NextIntent', {}, skipIntentFunction);
 skill.intent('AMAZON.RepeatIntent', {}, repeatIntentFunction);
-skill.intent('AMAZON.CancelIntent', {}, cancelIntentFunction);
-skill.intent('AMAZON.StopIntent', {}, cancelIntentFunction);
+skill.intent('AMAZON.CancelIntent', {}, stopIntentFunction);
+skill.intent('AMAZON.StopIntent', {}, stopIntentFunction);
 
 module.exports = skill;

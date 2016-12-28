@@ -1,0 +1,69 @@
+{
+  "intents": [
+    {
+      "intent": "startStudyingIntent",
+      "slots": [
+        {
+          "name": "SETNAME",
+          "type": "SETNAMES"
+        }
+      ]
+    },
+    {
+      "intent": "answerIntent",
+      "slots": []
+    },
+    {
+      "intent": "shuffleIntent",
+      "slots": []
+    },
+    {
+      "intent": "flipSidesIntent",
+      "slots": []
+    },
+    {
+      "intent": "statusIntent",
+      "slots": []
+    },
+    {
+      "intent": "waitIntent",
+      "slots": []
+    },
+    {
+      "intent": "knowIntent",
+      "slots": []
+    },
+    {
+      "intent": "dontKnowIntent",
+      "slots": []
+    },
+    {
+      "intent": "doneIntent",
+      "slots": []
+    },
+    {
+      "intent": "AMAZON.YesIntent",
+      "slots": []
+    },
+    {
+      "intent": "AMAZON.NoIntent",
+      "slots": []
+    },
+    {
+      "intent": "AMAZON.NextIntent",
+      "slots": []
+    },
+    {
+      "intent": "AMAZON.RepeatIntent",
+      "slots": []
+    },
+    {
+      "intent": "AMAZON.CancelIntent",
+      "slots": []
+    },
+    {
+      "intent": "AMAZON.StopIntent",
+      "slots": []
+    }
+  ]
+}

@@ -1,0 +1,908 @@
+startStudyingIntent	{SETNAME}
+startStudyingIntent	start {SETNAME}
+startStudyingIntent	open {SETNAME}
+startStudyingIntent	begin {SETNAME}
+startStudyingIntent	study {SETNAME}
+startStudyingIntent	studying {SETNAME}
+startStudyingIntent	start studying {SETNAME}
+startStudyingIntent	open studying {SETNAME}
+startStudyingIntent	begin studying {SETNAME}
+startStudyingIntent	study studying {SETNAME}
+startStudyingIntent	reviewing {SETNAME}
+startStudyingIntent	start reviewing {SETNAME}
+startStudyingIntent	open reviewing {SETNAME}
+startStudyingIntent	begin reviewing {SETNAME}
+startStudyingIntent	study reviewing {SETNAME}
+startStudyingIntent	flashcards {SETNAME}
+startStudyingIntent	start flashcards {SETNAME}
+startStudyingIntent	open flashcards {SETNAME}
+startStudyingIntent	begin flashcards {SETNAME}
+startStudyingIntent	study flashcards {SETNAME}
+startStudyingIntent	studying flashcards {SETNAME}
+startStudyingIntent	start studying flashcards {SETNAME}
+startStudyingIntent	open studying flashcards {SETNAME}
+startStudyingIntent	begin studying flashcards {SETNAME}
+startStudyingIntent	study studying flashcards {SETNAME}
+startStudyingIntent	reviewing flashcards {SETNAME}
+startStudyingIntent	start reviewing flashcards {SETNAME}
+startStudyingIntent	open reviewing flashcards {SETNAME}
+startStudyingIntent	begin reviewing flashcards {SETNAME}
+startStudyingIntent	study reviewing flashcards {SETNAME}
+startStudyingIntent	cards {SETNAME}
+startStudyingIntent	start cards {SETNAME}
+startStudyingIntent	open cards {SETNAME}
+startStudyingIntent	begin cards {SETNAME}
+startStudyingIntent	study cards {SETNAME}
+startStudyingIntent	studying cards {SETNAME}
+startStudyingIntent	start studying cards {SETNAME}
+startStudyingIntent	open studying cards {SETNAME}
+startStudyingIntent	begin studying cards {SETNAME}
+startStudyingIntent	study studying cards {SETNAME}
+startStudyingIntent	reviewing cards {SETNAME}
+startStudyingIntent	start reviewing cards {SETNAME}
+startStudyingIntent	open reviewing cards {SETNAME}
+startStudyingIntent	begin reviewing cards {SETNAME}
+startStudyingIntent	study reviewing cards {SETNAME}
+startStudyingIntent	set {SETNAME}
+startStudyingIntent	start set {SETNAME}
+startStudyingIntent	open set {SETNAME}
+startStudyingIntent	begin set {SETNAME}
+startStudyingIntent	study set {SETNAME}
+startStudyingIntent	studying set {SETNAME}
+startStudyingIntent	start studying set {SETNAME}
+startStudyingIntent	open studying set {SETNAME}
+startStudyingIntent	begin studying set {SETNAME}
+startStudyingIntent	study studying set {SETNAME}
+startStudyingIntent	reviewing set {SETNAME}
+startStudyingIntent	start reviewing set {SETNAME}
+startStudyingIntent	open reviewing set {SETNAME}
+startStudyingIntent	begin reviewing set {SETNAME}
+startStudyingIntent	study reviewing set {SETNAME}
+startStudyingIntent	words {SETNAME}
+startStudyingIntent	start words {SETNAME}
+startStudyingIntent	open words {SETNAME}
+startStudyingIntent	begin words {SETNAME}
+startStudyingIntent	study words {SETNAME}
+startStudyingIntent	studying words {SETNAME}
+startStudyingIntent	start studying words {SETNAME}
+startStudyingIntent	open studying words {SETNAME}
+startStudyingIntent	begin studying words {SETNAME}
+startStudyingIntent	study studying words {SETNAME}
+startStudyingIntent	reviewing words {SETNAME}
+startStudyingIntent	start reviewing words {SETNAME}
+startStudyingIntent	open reviewing words {SETNAME}
+startStudyingIntent	begin reviewing words {SETNAME}
+startStudyingIntent	study reviewing words {SETNAME}
+startStudyingIntent	for {SETNAME}
+startStudyingIntent	start for {SETNAME}
+startStudyingIntent	open for {SETNAME}
+startStudyingIntent	begin for {SETNAME}
+startStudyingIntent	study for {SETNAME}
+startStudyingIntent	studying for {SETNAME}
+startStudyingIntent	start studying for {SETNAME}
+startStudyingIntent	open studying for {SETNAME}
+startStudyingIntent	begin studying for {SETNAME}
+startStudyingIntent	study studying for {SETNAME}
+startStudyingIntent	reviewing for {SETNAME}
+startStudyingIntent	start reviewing for {SETNAME}
+startStudyingIntent	open reviewing for {SETNAME}
+startStudyingIntent	begin reviewing for {SETNAME}
+startStudyingIntent	study reviewing for {SETNAME}
+startStudyingIntent	flashcards for {SETNAME}
+startStudyingIntent	start flashcards for {SETNAME}
+startStudyingIntent	open flashcards for {SETNAME}
+startStudyingIntent	begin flashcards for {SETNAME}
+startStudyingIntent	study flashcards for {SETNAME}
+startStudyingIntent	studying flashcards for {SETNAME}
+startStudyingIntent	start studying flashcards for {SETNAME}
+startStudyingIntent	open studying flashcards for {SETNAME}
+startStudyingIntent	begin studying flashcards for {SETNAME}
+startStudyingIntent	study studying flashcards for {SETNAME}
+startStudyingIntent	reviewing flashcards for {SETNAME}
+startStudyingIntent	start reviewing flashcards for {SETNAME}
+startStudyingIntent	open reviewing flashcards for {SETNAME}
+startStudyingIntent	begin reviewing flashcards for {SETNAME}
+startStudyingIntent	study reviewing flashcards for {SETNAME}
+startStudyingIntent	cards for {SETNAME}
+startStudyingIntent	start cards for {SETNAME}
+startStudyingIntent	open cards for {SETNAME}
+startStudyingIntent	begin cards for {SETNAME}
+startStudyingIntent	study cards for {SETNAME}
+startStudyingIntent	studying cards for {SETNAME}
+startStudyingIntent	start studying cards for {SETNAME}
+startStudyingIntent	open studying cards for {SETNAME}
+startStudyingIntent	begin studying cards for {SETNAME}
+startStudyingIntent	study studying cards for {SETNAME}
+startStudyingIntent	reviewing cards for {SETNAME}
+startStudyingIntent	start reviewing cards for {SETNAME}
+startStudyingIntent	open reviewing cards for {SETNAME}
+startStudyingIntent	begin reviewing cards for {SETNAME}
+startStudyingIntent	study reviewing cards for {SETNAME}
+startStudyingIntent	set for {SETNAME}
+startStudyingIntent	start set for {SETNAME}
+startStudyingIntent	open set for {SETNAME}
+startStudyingIntent	begin set for {SETNAME}
+startStudyingIntent	study set for {SETNAME}
+startStudyingIntent	studying set for {SETNAME}
+startStudyingIntent	start studying set for {SETNAME}
+startStudyingIntent	open studying set for {SETNAME}
+startStudyingIntent	begin studying set for {SETNAME}
+startStudyingIntent	study studying set for {SETNAME}
+startStudyingIntent	reviewing set for {SETNAME}
+startStudyingIntent	start reviewing set for {SETNAME}
+startStudyingIntent	open reviewing set for {SETNAME}
+startStudyingIntent	begin reviewing set for {SETNAME}
+startStudyingIntent	study reviewing set for {SETNAME}
+startStudyingIntent	words for {SETNAME}
+startStudyingIntent	start words for {SETNAME}
+startStudyingIntent	open words for {SETNAME}
+startStudyingIntent	begin words for {SETNAME}
+startStudyingIntent	study words for {SETNAME}
+startStudyingIntent	studying words for {SETNAME}
+startStudyingIntent	start studying words for {SETNAME}
+startStudyingIntent	open studying words for {SETNAME}
+startStudyingIntent	begin studying words for {SETNAME}
+startStudyingIntent	study studying words for {SETNAME}
+startStudyingIntent	reviewing words for {SETNAME}
+startStudyingIntent	start reviewing words for {SETNAME}
+startStudyingIntent	open reviewing words for {SETNAME}
+startStudyingIntent	begin reviewing words for {SETNAME}
+startStudyingIntent	study reviewing words for {SETNAME}
+answerIntent	answer is
+answerIntent	the answer is
+answerIntent	definition is
+answerIntent	the definition is
+answerIntent	term is
+answerIntent	the term is
+answerIntent	word is
+answerIntent	the word is
+answerIntent	it is
+answerIntent	the it is
+answerIntent	other side is
+answerIntent	the other side is
+shuffleIntent	shuffle
+shuffleIntent	mix
+shuffleIntent	change
+shuffleIntent	shuffle up
+shuffleIntent	mix up
+shuffleIntent	change up
+shuffleIntent	shuffle the
+shuffleIntent	mix the
+shuffleIntent	change the
+shuffleIntent	shuffle up the
+shuffleIntent	mix up the
+shuffleIntent	change up the
+shuffleIntent	shuffle cards
+shuffleIntent	mix cards
+shuffleIntent	change cards
+shuffleIntent	shuffle up cards
+shuffleIntent	mix up cards
+shuffleIntent	change up cards
+shuffleIntent	shuffle the cards
+shuffleIntent	mix the cards
+shuffleIntent	change the cards
+shuffleIntent	shuffle up the cards
+shuffleIntent	mix up the cards
+shuffleIntent	change up the cards
+shuffleIntent	shuffle terms
+shuffleIntent	mix terms
+shuffleIntent	change terms
+shuffleIntent	shuffle up terms
+shuffleIntent	mix up terms
+shuffleIntent	change up terms
+shuffleIntent	shuffle the terms
+shuffleIntent	mix the terms
+shuffleIntent	change the terms
+shuffleIntent	shuffle up the terms
+shuffleIntent	mix up the terms
+shuffleIntent	change up the terms
+shuffleIntent	shuffle words
+shuffleIntent	mix words
+shuffleIntent	change words
+shuffleIntent	shuffle up words
+shuffleIntent	mix up words
+shuffleIntent	change up words
+shuffleIntent	shuffle the words
+shuffleIntent	mix the words
+shuffleIntent	change the words
+shuffleIntent	shuffle up the words
+shuffleIntent	mix up the words
+shuffleIntent	change up the words
+shuffleIntent	shuffle set
+shuffleIntent	mix set
+shuffleIntent	change set
+shuffleIntent	shuffle up set
+shuffleIntent	mix up set
+shuffleIntent	change up set
+shuffleIntent	shuffle the set
+shuffleIntent	mix the set
+shuffleIntent	change the set
+shuffleIntent	shuffle up the set
+shuffleIntent	mix up the set
+shuffleIntent	change up the set
+flipSidesIntent	flip
+flipSidesIntent	use the opposite
+flipSidesIntent	change
+flipSidesIntent	use the other
+flipSidesIntent	flip sides
+flipSidesIntent	use the opposite sides
+flipSidesIntent	change sides
+flipSidesIntent	use the other sides
+flipSidesIntent	flip the
+flipSidesIntent	use the opposite the
+flipSidesIntent	change the
+flipSidesIntent	use the other the
+flipSidesIntent	flip sides the
+flipSidesIntent	use the opposite sides the
+flipSidesIntent	change sides the
+flipSidesIntent	use the other sides the
+flipSidesIntent	flip of
+flipSidesIntent	use the opposite of
+flipSidesIntent	change of
+flipSidesIntent	use the other of
+flipSidesIntent	flip sides of
+flipSidesIntent	use the opposite sides of
+flipSidesIntent	change sides of
+flipSidesIntent	use the other sides of
+flipSidesIntent	flip card
+flipSidesIntent	use the opposite card
+flipSidesIntent	change card
+flipSidesIntent	use the other card
+flipSidesIntent	flip sides card
+flipSidesIntent	use the opposite sides card
+flipSidesIntent	change sides card
+flipSidesIntent	use the other sides card
+flipSidesIntent	flip the card
+flipSidesIntent	use the opposite the card
+flipSidesIntent	change the card
+flipSidesIntent	use the other the card
+flipSidesIntent	flip sides the card
+flipSidesIntent	use the opposite sides the card
+flipSidesIntent	change sides the card
+flipSidesIntent	use the other sides the card
+flipSidesIntent	flip of card
+flipSidesIntent	use the opposite of card
+flipSidesIntent	change of card
+flipSidesIntent	use the other of card
+flipSidesIntent	flip sides of card
+flipSidesIntent	use the opposite sides of card
+flipSidesIntent	change sides of card
+flipSidesIntent	use the other sides of card
+statusIntent	how many
+statusIntent	where many
+statusIntent	status many
+statusIntent	how far
+statusIntent	where far
+statusIntent	status far
+statusIntent	how am
+statusIntent	where am
+statusIntent	status am
+statusIntent	how many more
+statusIntent	where many more
+statusIntent	status many more
+statusIntent	how many do
+statusIntent	where many do
+statusIntent	status many do
+statusIntent	how far do
+statusIntent	where far do
+statusIntent	status far do
+statusIntent	how am do
+statusIntent	where am do
+statusIntent	status am do
+statusIntent	how many more do
+statusIntent	where many more do
+statusIntent	status many more do
+statusIntent	how many I
+statusIntent	where many I
+statusIntent	status many I
+statusIntent	how far I
+statusIntent	where far I
+statusIntent	status far I
+statusIntent	how am I
+statusIntent	where am I
+statusIntent	status am I
+statusIntent	how many more I
+statusIntent	where many more I
+statusIntent	status many more I
+statusIntent	how many do I
+statusIntent	where many do I
+statusIntent	status many do I
+statusIntent	how far do I
+statusIntent	where far do I
+statusIntent	status far do I
+statusIntent	how am do I
+statusIntent	where am do I
+statusIntent	status am do I
+statusIntent	how many more do I
+statusIntent	where many more do I
+statusIntent	status many more do I
+statusIntent	how many have
+statusIntent	where many have
+statusIntent	status many have
+statusIntent	how far have
+statusIntent	where far have
+statusIntent	status far have
+statusIntent	how am have
+statusIntent	where am have
+statusIntent	status am have
+statusIntent	how many more have
+statusIntent	where many more have
+statusIntent	status many more have
+statusIntent	how many do have
+statusIntent	where many do have
+statusIntent	status many do have
+statusIntent	how far do have
+statusIntent	where far do have
+statusIntent	status far do have
+statusIntent	how am do have
+statusIntent	where am do have
+statusIntent	status am do have
+statusIntent	how many more do have
+statusIntent	where many more do have
+statusIntent	status many more do have
+statusIntent	how many I have
+statusIntent	where many I have
+statusIntent	status many I have
+statusIntent	how far I have
+statusIntent	where far I have
+statusIntent	status far I have
+statusIntent	how am I have
+statusIntent	where am I have
+statusIntent	status am I have
+statusIntent	how many more I have
+statusIntent	where many more I have
+statusIntent	status many more I have
+statusIntent	how many do I have
+statusIntent	where many do I have
+statusIntent	status many do I have
+statusIntent	how far do I have
+statusIntent	where far do I have
+statusIntent	status far do I have
+statusIntent	how am do I have
+statusIntent	where am do I have
+statusIntent	status am do I have
+statusIntent	how many more do I have
+statusIntent	where many more do I have
+statusIntent	status many more do I have
+statusIntent	how many left
+statusIntent	where many left
+statusIntent	status many left
+statusIntent	how far left
+statusIntent	where far left
+statusIntent	status far left
+statusIntent	how am left
+statusIntent	where am left
+statusIntent	status am left
+statusIntent	how many more left
+statusIntent	where many more left
+statusIntent	status many more left
+statusIntent	how many do left
+statusIntent	where many do left
+statusIntent	status many do left
+statusIntent	how far do left
+statusIntent	where far do left
+statusIntent	status far do left
+statusIntent	how am do left
+statusIntent	where am do left
+statusIntent	status am do left
+statusIntent	how many more do left
+statusIntent	where many more do left
+statusIntent	status many more do left
+statusIntent	how many I left
+statusIntent	where many I left
+statusIntent	status many I left
+statusIntent	how far I left
+statusIntent	where far I left
+statusIntent	status far I left
+statusIntent	how am I left
+statusIntent	where am I left
+statusIntent	status am I left
+statusIntent	how many more I left
+statusIntent	where many more I left
+statusIntent	status many more I left
+statusIntent	how many do I left
+statusIntent	where many do I left
+statusIntent	status many do I left
+statusIntent	how far do I left
+statusIntent	where far do I left
+statusIntent	status far do I left
+statusIntent	how am do I left
+statusIntent	where am do I left
+statusIntent	status am do I left
+statusIntent	how many more do I left
+statusIntent	where many more do I left
+statusIntent	status many more do I left
+statusIntent	how many have left
+statusIntent	where many have left
+statusIntent	status many have left
+statusIntent	how far have left
+statusIntent	where far have left
+statusIntent	status far have left
+statusIntent	how am have left
+statusIntent	where am have left
+statusIntent	status am have left
+statusIntent	how many more have left
+statusIntent	where many more have left
+statusIntent	status many more have left
+statusIntent	how many do have left
+statusIntent	where many do have left
+statusIntent	status many do have left
+statusIntent	how far do have left
+statusIntent	where far do have left
+statusIntent	status far do have left
+statusIntent	how am do have left
+statusIntent	where am do have left
+statusIntent	status am do have left
+statusIntent	how many more do have left
+statusIntent	where many more do have left
+statusIntent	status many more do have left
+statusIntent	how many I have left
+statusIntent	where many I have left
+statusIntent	status many I have left
+statusIntent	how far I have left
+statusIntent	where far I have left
+statusIntent	status far I have left
+statusIntent	how am I have left
+statusIntent	where am I have left
+statusIntent	status am I have left
+statusIntent	how many more I have left
+statusIntent	where many more I have left
+statusIntent	status many more I have left
+statusIntent	how many do I have left
+statusIntent	where many do I have left
+statusIntent	status many do I have left
+statusIntent	how far do I have left
+statusIntent	where far do I have left
+statusIntent	status far do I have left
+statusIntent	how am do I have left
+statusIntent	where am do I have left
+statusIntent	status am do I have left
+statusIntent	how many more do I have left
+statusIntent	where many more do I have left
+statusIntent	status many more do I have left
+statusIntent	how many remaining
+statusIntent	where many remaining
+statusIntent	status many remaining
+statusIntent	how far remaining
+statusIntent	where far remaining
+statusIntent	status far remaining
+statusIntent	how am remaining
+statusIntent	where am remaining
+statusIntent	status am remaining
+statusIntent	how many more remaining
+statusIntent	where many more remaining
+statusIntent	status many more remaining
+statusIntent	how many do remaining
+statusIntent	where many do remaining
+statusIntent	status many do remaining
+statusIntent	how far do remaining
+statusIntent	where far do remaining
+statusIntent	status far do remaining
+statusIntent	how am do remaining
+statusIntent	where am do remaining
+statusIntent	status am do remaining
+statusIntent	how many more do remaining
+statusIntent	where many more do remaining
+statusIntent	status many more do remaining
+statusIntent	how many I remaining
+statusIntent	where many I remaining
+statusIntent	status many I remaining
+statusIntent	how far I remaining
+statusIntent	where far I remaining
+statusIntent	status far I remaining
+statusIntent	how am I remaining
+statusIntent	where am I remaining
+statusIntent	status am I remaining
+statusIntent	how many more I remaining
+statusIntent	where many more I remaining
+statusIntent	status many more I remaining
+statusIntent	how many do I remaining
+statusIntent	where many do I remaining
+statusIntent	status many do I remaining
+statusIntent	how far do I remaining
+statusIntent	where far do I remaining
+statusIntent	status far do I remaining
+statusIntent	how am do I remaining
+statusIntent	where am do I remaining
+statusIntent	status am do I remaining
+statusIntent	how many more do I remaining
+statusIntent	where many more do I remaining
+statusIntent	status many more do I remaining
+statusIntent	how many have remaining
+statusIntent	where many have remaining
+statusIntent	status many have remaining
+statusIntent	how far have remaining
+statusIntent	where far have remaining
+statusIntent	status far have remaining
+statusIntent	how am have remaining
+statusIntent	where am have remaining
+statusIntent	status am have remaining
+statusIntent	how many more have remaining
+statusIntent	where many more have remaining
+statusIntent	status many more have remaining
+statusIntent	how many do have remaining
+statusIntent	where many do have remaining
+statusIntent	status many do have remaining
+statusIntent	how far do have remaining
+statusIntent	where far do have remaining
+statusIntent	status far do have remaining
+statusIntent	how am do have remaining
+statusIntent	where am do have remaining
+statusIntent	status am do have remaining
+statusIntent	how many more do have remaining
+statusIntent	where many more do have remaining
+statusIntent	status many more do have remaining
+statusIntent	how many I have remaining
+statusIntent	where many I have remaining
+statusIntent	status many I have remaining
+statusIntent	how far I have remaining
+statusIntent	where far I have remaining
+statusIntent	status far I have remaining
+statusIntent	how am I have remaining
+statusIntent	where am I have remaining
+statusIntent	status am I have remaining
+statusIntent	how many more I have remaining
+statusIntent	where many more I have remaining
+statusIntent	status many more I have remaining
+statusIntent	how many do I have remaining
+statusIntent	where many do I have remaining
+statusIntent	status many do I have remaining
+statusIntent	how far do I have remaining
+statusIntent	where far do I have remaining
+statusIntent	status far do I have remaining
+statusIntent	how am do I have remaining
+statusIntent	where am do I have remaining
+statusIntent	status am do I have remaining
+statusIntent	how many more do I have remaining
+statusIntent	where many more do I have remaining
+statusIntent	status many more do I have remaining
+statusIntent	how many now
+statusIntent	where many now
+statusIntent	status many now
+statusIntent	how far now
+statusIntent	where far now
+statusIntent	status far now
+statusIntent	how am now
+statusIntent	where am now
+statusIntent	status am now
+statusIntent	how many more now
+statusIntent	where many more now
+statusIntent	status many more now
+statusIntent	how many do now
+statusIntent	where many do now
+statusIntent	status many do now
+statusIntent	how far do now
+statusIntent	where far do now
+statusIntent	status far do now
+statusIntent	how am do now
+statusIntent	where am do now
+statusIntent	status am do now
+statusIntent	how many more do now
+statusIntent	where many more do now
+statusIntent	status many more do now
+statusIntent	how many I now
+statusIntent	where many I now
+statusIntent	status many I now
+statusIntent	how far I now
+statusIntent	where far I now
+statusIntent	status far I now
+statusIntent	how am I now
+statusIntent	where am I now
+statusIntent	status am I now
+statusIntent	how many more I now
+statusIntent	where many more I now
+statusIntent	status many more I now
+statusIntent	how many do I now
+statusIntent	where many do I now
+statusIntent	status many do I now
+statusIntent	how far do I now
+statusIntent	where far do I now
+statusIntent	status far do I now
+statusIntent	how am do I now
+statusIntent	where am do I now
+statusIntent	status am do I now
+statusIntent	how many more do I now
+statusIntent	where many more do I now
+statusIntent	status many more do I now
+statusIntent	how many have now
+statusIntent	where many have now
+statusIntent	status many have now
+statusIntent	how far have now
+statusIntent	where far have now
+statusIntent	status far have now
+statusIntent	how am have now
+statusIntent	where am have now
+statusIntent	status am have now
+statusIntent	how many more have now
+statusIntent	where many more have now
+statusIntent	status many more have now
+statusIntent	how many do have now
+statusIntent	where many do have now
+statusIntent	status many do have now
+statusIntent	how far do have now
+statusIntent	where far do have now
+statusIntent	status far do have now
+statusIntent	how am do have now
+statusIntent	where am do have now
+statusIntent	status am do have now
+statusIntent	how many more do have now
+statusIntent	where many more do have now
+statusIntent	status many more do have now
+statusIntent	how many I have now
+statusIntent	where many I have now
+statusIntent	status many I have now
+statusIntent	how far I have now
+statusIntent	where far I have now
+statusIntent	status far I have now
+statusIntent	how am I have now
+statusIntent	where am I have now
+statusIntent	status am I have now
+statusIntent	how many more I have now
+statusIntent	where many more I have now
+statusIntent	status many more I have now
+statusIntent	how many do I have now
+statusIntent	where many do I have now
+statusIntent	status many do I have now
+statusIntent	how far do I have now
+statusIntent	where far do I have now
+statusIntent	status far do I have now
+statusIntent	how am do I have now
+statusIntent	where am do I have now
+statusIntent	status am do I have now
+statusIntent	how many more do I have now
+statusIntent	where many more do I have now
+statusIntent	status many more do I have now
+statusIntent	how many left now
+statusIntent	where many left now
+statusIntent	status many left now
+statusIntent	how far left now
+statusIntent	where far left now
+statusIntent	status far left now
+statusIntent	how am left now
+statusIntent	where am left now
+statusIntent	status am left now
+statusIntent	how many more left now
+statusIntent	where many more left now
+statusIntent	status many more left now
+statusIntent	how many do left now
+statusIntent	where many do left now
+statusIntent	status many do left now
+statusIntent	how far do left now
+statusIntent	where far do left now
+statusIntent	status far do left now
+statusIntent	how am do left now
+statusIntent	where am do left now
+statusIntent	status am do left now
+statusIntent	how many more do left now
+statusIntent	where many more do left now
+statusIntent	status many more do left now
+statusIntent	how many I left now
+statusIntent	where many I left now
+statusIntent	status many I left now
+statusIntent	how far I left now
+statusIntent	where far I left now
+statusIntent	status far I left now
+statusIntent	how am I left now
+statusIntent	where am I left now
+statusIntent	status am I left now
+statusIntent	how many more I left now
+statusIntent	where many more I left now
+statusIntent	status many more I left now
+statusIntent	how many do I left now
+statusIntent	where many do I left now
+statusIntent	status many do I left now
+statusIntent	how far do I left now
+statusIntent	where far do I left now
+statusIntent	status far do I left now
+statusIntent	how am do I left now
+statusIntent	where am do I left now
+statusIntent	status am do I left now
+statusIntent	how many more do I left now
+statusIntent	where many more do I left now
+statusIntent	status many more do I left now
+statusIntent	how many have left now
+statusIntent	where many have left now
+statusIntent	status many have left now
+statusIntent	how far have left now
+statusIntent	where far have left now
+statusIntent	status far have left now
+statusIntent	how am have left now
+statusIntent	where am have left now
+statusIntent	status am have left now
+statusIntent	how many more have left now
+statusIntent	where many more have left now
+statusIntent	status many more have left now
+statusIntent	how many do have left now
+statusIntent	where many do have left now
+statusIntent	status many do have left now
+statusIntent	how far do have left now
+statusIntent	where far do have left now
+statusIntent	status far do have left now
+statusIntent	how am do have left now
+statusIntent	where am do have left now
+statusIntent	status am do have left now
+statusIntent	how many more do have left now
+statusIntent	where many more do have left now
+statusIntent	status many more do have left now
+statusIntent	how many I have left now
+statusIntent	where many I have left now
+statusIntent	status many I have left now
+statusIntent	how far I have left now
+statusIntent	where far I have left now
+statusIntent	status far I have left now
+statusIntent	how am I have left now
+statusIntent	where am I have left now
+statusIntent	status am I have left now
+statusIntent	how many more I have left now
+statusIntent	where many more I have left now
+statusIntent	status many more I have left now
+statusIntent	how many do I have left now
+statusIntent	where many do I have left now
+statusIntent	status many do I have left now
+statusIntent	how far do I have left now
+statusIntent	where far do I have left now
+statusIntent	status far do I have left now
+statusIntent	how am do I have left now
+statusIntent	where am do I have left now
+statusIntent	status am do I have left now
+statusIntent	how many more do I have left now
+statusIntent	where many more do I have left now
+statusIntent	status many more do I have left now
+statusIntent	how many remaining now
+statusIntent	where many remaining now
+statusIntent	status many remaining now
+statusIntent	how far remaining now
+statusIntent	where far remaining now
+statusIntent	status far remaining now
+statusIntent	how am remaining now
+statusIntent	where am remaining now
+statusIntent	status am remaining now
+statusIntent	how many more remaining now
+statusIntent	where many more remaining now
+statusIntent	status many more remaining now
+statusIntent	how many do remaining now
+statusIntent	where many do remaining now
+statusIntent	status many do remaining now
+statusIntent	how far do remaining now
+statusIntent	where far do remaining now
+statusIntent	status far do remaining now
+statusIntent	how am do remaining now
+statusIntent	where am do remaining now
+statusIntent	status am do remaining now
+statusIntent	how many more do remaining now
+statusIntent	where many more do remaining now
+statusIntent	status many more do remaining now
+statusIntent	how many I remaining now
+statusIntent	where many I remaining now
+statusIntent	status many I remaining now
+statusIntent	how far I remaining now
+statusIntent	where far I remaining now
+statusIntent	status far I remaining now
+statusIntent	how am I remaining now
+statusIntent	where am I remaining now
+statusIntent	status am I remaining now
+statusIntent	how many more I remaining now
+statusIntent	where many more I remaining now
+statusIntent	status many more I remaining now
+statusIntent	how many do I remaining now
+statusIntent	where many do I remaining now
+statusIntent	status many do I remaining now
+statusIntent	how far do I remaining now
+statusIntent	where far do I remaining now
+statusIntent	status far do I remaining now
+statusIntent	how am do I remaining now
+statusIntent	where am do I remaining now
+statusIntent	status am do I remaining now
+statusIntent	how many more do I remaining now
+statusIntent	where many more do I remaining now
+statusIntent	status many more do I remaining now
+statusIntent	how many have remaining now
+statusIntent	where many have remaining now
+statusIntent	status many have remaining now
+statusIntent	how far have remaining now
+statusIntent	where far have remaining now
+statusIntent	status far have remaining now
+statusIntent	how am have remaining now
+statusIntent	where am have remaining now
+statusIntent	status am have remaining now
+statusIntent	how many more have remaining now
+statusIntent	where many more have remaining now
+statusIntent	status many more have remaining now
+statusIntent	how many do have remaining now
+statusIntent	where many do have remaining now
+statusIntent	status many do have remaining now
+statusIntent	how far do have remaining now
+statusIntent	where far do have remaining now
+statusIntent	status far do have remaining now
+statusIntent	how am do have remaining now
+statusIntent	where am do have remaining now
+statusIntent	status am do have remaining now
+statusIntent	how many more do have remaining now
+statusIntent	where many more do have remaining now
+statusIntent	status many more do have remaining now
+statusIntent	how many I have remaining now
+statusIntent	where many I have remaining now
+statusIntent	status many I have remaining now
+statusIntent	how far I have remaining now
+statusIntent	where far I have remaining now
+statusIntent	status far I have remaining now
+statusIntent	how am I have remaining now
+statusIntent	where am I have remaining now
+statusIntent	status am I have remaining now
+statusIntent	how many more I have remaining now
+statusIntent	where many more I have remaining now
+statusIntent	status many more I have remaining now
+statusIntent	how many do I have remaining now
+statusIntent	where many do I have remaining now
+statusIntent	status many do I have remaining now
+statusIntent	how far do I have remaining now
+statusIntent	where far do I have remaining now
+statusIntent	status far do I have remaining now
+statusIntent	how am do I have remaining now
+statusIntent	where am do I have remaining now
+statusIntent	status am do I have remaining now
+statusIntent	how many more do I have remaining now
+statusIntent	where many more do I have remaining now
+statusIntent	status many more do I have remaining now
+waitIntent	wait
+waitIntent	hold on
+waitIntent	I'm thinking
+waitIntent	give me
+waitIntent	let me think
+waitIntent	wait for
+waitIntent	hold on for
+waitIntent	I'm thinking for
+waitIntent	give me for
+waitIntent	let me think for
+waitIntent	wait a second
+waitIntent	hold on a second
+waitIntent	I'm thinking a second
+waitIntent	give me a second
+waitIntent	let me think a second
+waitIntent	wait for a second
+waitIntent	hold on for a second
+waitIntent	I'm thinking for a second
+waitIntent	give me for a second
+waitIntent	let me think for a second
+waitIntent	wait some time
+waitIntent	hold on some time
+waitIntent	I'm thinking some time
+waitIntent	give me some time
+waitIntent	let me think some time
+waitIntent	wait for some time
+waitIntent	hold on for some time
+waitIntent	I'm thinking for some time
+waitIntent	give me for some time
+waitIntent	let me think for some time
+knowIntent	know this
+knowIntent	I know this
+knowIntent	already know this
+knowIntent	I already know this
+knowIntent	know the answer
+knowIntent	I know the answer
+knowIntent	already know the answer
+knowIntent	I already know the answer
+knowIntent	know this one
+knowIntent	I know this one
+knowIntent	already know this one
+knowIntent	I already know this one
+knowIntent	know the answer one
+knowIntent	I know the answer one
+knowIntent	already know the answer one
+knowIntent	I already know the answer one
+dontKnowIntent	don't know this
+dontKnowIntent	I don't know this
+dontKnowIntent	don't know the answer
+dontKnowIntent	I don't know the answer
+dontKnowIntent	don't know this one
+dontKnowIntent	I don't know this one
+dontKnowIntent	don't know the answer one
+dontKnowIntent	I don't know the answer one
+doneIntent	done
+doneIntent	I'm done
+doneIntent	finished
+doneIntent	I'm finished
+doneIntent	done studying
+doneIntent	I'm done studying
+doneIntent	finished studying
+doneIntent	I'm finished studying
