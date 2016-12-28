@@ -100,9 +100,21 @@ var flipSidesIntentFunction = function(request, response) {
     return true;
 };
 
+var statusIntentFunction = function(request, response) {
+    console.log("Status intent triggered");
+    var currentCard = currentCardBank.getNextCard();
+    var percentFinished = Math.round(currentCardBank.numFinished * 100 / (currentCardBank.numFinished + currentCardBank.numCards));
+    var prompt = "You are currently " + percentFinished +
+    " percent through with the set. You have " + currentCardBank.numCards +
+    " cards remaining. Your current card is " + currentCard;
+    var reprompt = "Your current card is " + currentCard;
+    response.say(prompt).reprompt(reprompt).shouldEndSession(false);
+    return true;
+};
+
 var cancelIntentFunction = function(request, response) {
     console.log("Cancel intent triggered");
-    response.say('Good work! Let\'s take a well deserved break.').shouldEndSession(true);
+    response.say('Good work. Let\'s take a well deserved break.').shouldEndSession(true);
     return true;
 };
 
@@ -162,7 +174,7 @@ skill.intent('startStudyingIntent', {
         'SETNAME': 'SETNAMES'
     },
     'utterances': [
-        '{start|open|begin|study} {|studying|reviewing} {|flashcards|cards|set|words} {|for} {-|SETNAME}'
+        '{|start|open|begin|study} {|studying|reviewing} {|flashcards|cards|set|words} {|for} {-|SETNAME}'
     ]
 }, startStudyingIntentFunction);
 skill.intent('answerIntent', {
@@ -180,6 +192,11 @@ skill.intent('flipSidesIntent', {
         '{flip|use the opposite|change|use the other} {|sides} {|the|of} {|card}'
     ]
 }, flipSidesIntentFunction);
+skill.intent('statusIntent', {
+    'utterances': [
+        '{how|where} {many|far|am|many more} {|do} {|I} {|have} {|left|remaining} {|now}'
+    ]
+}, statusIntentFunction);
 skill.intent('AMAZON.CancelIntent', {}, cancelIntentFunction);
 skill.intent('AMAZON.StopIntent', {}, cancelIntentFunction);
 skill.intent('AMAZON.YesIntent', {}, correctIntentFunction);
