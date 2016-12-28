@@ -149,7 +149,55 @@ var waitIntentFunction = function(request, response) {
     var reprompt = "Please give an answer.";
     response.say(prompt).reprompt(reprompt).shouldEndSession(false);
     return true;
-}
+};
+
+var knowIntentFunction = function(request, response) {
+    console.log("Correct intent triggered");
+    if (currentCardBank === null) {
+        var prompt = "You have not started a set yet. Tell me a set name to get started.";
+        var reprompt = "Tell me a set name to get started."
+        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        return true;
+    }
+    currentCardBank.gotCorrect();
+    console.log(currentCardBank.numCards);
+    if (currentCardBank.numCards === 0) {
+        // finished
+        var prompt = "Congratulations, you have finished the set for " + currentSetName +". Open flash cards again to review this set or to start studying another set.";
+        response.say(prompt).shouldEndSession(true);
+        return true;
+    } else {
+        var nextCard = currentCardBank.getNextCard();
+        var prompt = "Ok. I'll move that card to the finished pile. Your next card is " + nextCard;
+        var reprompt = "Your next card is " + nextCard;
+        response.say(prompt).reprompt(reprompt).shouldEndSession(false);
+        console.log("card bank: ");
+        console.log(currentCardBank);
+        return true;
+    }
+};
+
+var dontKnowIntentFunction = function(request, response) {
+    console.log("Don't know intent triggered");
+    if (currentCardBank === null) {
+        var prompt = "You have not started a set yet. Tell me a set name to get started.";
+        var reprompt = "Tell me a set name to get started."
+        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        return true;
+    }
+    var currentCardFlipSide = currentCardBank.getNextCardFlipSide();
+    currentCardBank.gotWrong();
+    var nextCard = currentCardBank.getNextCard();
+    var prompt = "No worries. The answer was " + currentCardFlipSide
+    + ". We'll come back to that one again later. Your next card is "
+    + nextCard;
+    var reprompt = "Your next card is " + nextCard;
+    response.say(prompt).reprompt(reprompt).shouldEndSession(false);
+    console.log("card bank: ");
+    console.log(currentCardBank);
+    return true;
+};
+
 var correctIntentFunction = function(request, response) {
     console.log("Correct intent triggered");
     if (currentCardBank === null) {
@@ -273,6 +321,16 @@ skill.intent('waitIntent', {
         '{wait|hold on|I\'m thinking|give me|let me think} {|for} {|a second|some time}'
     ]
 }, waitIntentFunction);
+skill.intent('knowIntent', {
+    'utterances': [
+        '{|I} {|already} {know} {this|the answer} {|one}'
+    ]
+}, knowIntentFunction);
+skill.intent('dontKnowIntent', {
+    'utterances': [
+        '{|I} {don\'t know} {this|the answer} {|one}'
+    ]
+}, dontKnowIntentFunction);
 skill.intent('AMAZON.YesIntent', {}, correctIntentFunction);
 skill.intent('AMAZON.NoIntent', {}, wrongIntentFunction);
 skill.intent('AMAZON.NextIntent', {}, skipIntentFunction);
