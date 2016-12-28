@@ -67,6 +67,12 @@ var startStudyingIntentFunction = function(request, response) {
 
 var answerIntentFunction = function(request, response) {
     console.log("Answer intent triggered");
+    if (currentCardBank === null) {
+        var prompt = "You have not started a set yet. Tell me a set name to get started.";
+        var reprompt = "Tell me a set name to get started."
+        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        return true;
+    }
     var currentCard = currentCardBank.getNextCard();
     var currentCardFlipSide = currentCardBank.getNextCardFlipSide();
     var prompt = "The correct answer was " + currentCardFlipSide + ". Did you get it correct?";
@@ -77,6 +83,12 @@ var answerIntentFunction = function(request, response) {
 
 var shuffleIntentFunction = function(request, response) {
     console.log("Shuffle intent triggered");
+    if (currentCardBank === null) {
+        var prompt = "You have not started a set yet. Tell me a set name to get started.";
+        var reprompt = "Tell me a set name to get started."
+        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        return true;
+    }
     currentCardBank.shuffle();
     var nextCard = currentCardBank.getNextCard();
     var prompt = "OK. I just shuffled the cards. Your next card is " + nextCard;
@@ -89,6 +101,12 @@ var shuffleIntentFunction = function(request, response) {
 
 var flipSidesIntentFunction = function(request, response) {
     console.log("Flip sides intent triggered");
+    if (currentCardBank === null) {
+        var prompt = "You have not started a set yet. Tell me a set name to get started.";
+        var reprompt = "Tell me a set name to get started."
+        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        return true;
+    }
     currentCardBank.flipSides();
     currentCardBank.shuffle();
     var nextCard = currentCardBank.getNextCard();
@@ -102,6 +120,12 @@ var flipSidesIntentFunction = function(request, response) {
 
 var statusIntentFunction = function(request, response) {
     console.log("Status intent triggered");
+    if (currentCardBank === null) {
+        var prompt = "You have not started a set yet. Tell me a set name to get started.";
+        var reprompt = "Tell me a set name to get started."
+        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        return true;
+    }
     var currentCard = currentCardBank.getNextCard();
     var percentFinished = Math.round(currentCardBank.numFinished * 100 / (currentCardBank.numFinished + currentCardBank.numCards));
     var prompt = "You are currently " + percentFinished +
@@ -112,14 +136,14 @@ var statusIntentFunction = function(request, response) {
     return true;
 };
 
-var cancelIntentFunction = function(request, response) {
-    console.log("Cancel intent triggered");
-    response.say('Good work. Let\'s take a well deserved break.').shouldEndSession(true);
-    return true;
-};
-
 var correctIntentFunction = function(request, response) {
     console.log("Correct intent triggered");
+    if (currentCardBank === null) {
+        var prompt = "You have not started a set yet. Tell me a set name to get started.";
+        var reprompt = "Tell me a set name to get started."
+        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        return true;
+    }
     currentCardBank.gotCorrect();
     var nextCard = currentCardBank.getNextCard();
     var prompt = "Good Job! Your next card is " + nextCard;
@@ -132,6 +156,12 @@ var correctIntentFunction = function(request, response) {
 
 var wrongIntentFunction = function(request, response) {
     console.log("Wrong intent function triggered");
+    if (currentCardBank === null) {
+        var prompt = "You have not started a set yet. Tell me a set name to get started.";
+        var reprompt = "Tell me a set name to get started."
+        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        return true;
+    }
     currentCardBank.gotWrong();
     var nextCard = currentCardBank.getNextCard();
     var prompt = "Almost. We\'ll come back to that one later. Your next card is " + nextCard;
@@ -144,6 +174,12 @@ var wrongIntentFunction = function(request, response) {
 
 var skipIntentFunction = function(request, response) {
     console.log("Skip intent function triggered");
+    if (currentCardBank === null) {
+        var prompt = "You have not started a set yet. Tell me a set name to get started.";
+        var reprompt = "Tell me a set name to get started."
+        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        return true;
+    }
     currentCardBank.gotWrong();
     var nextCard = currentCardBank.getNextCard();
     var prompt = "OK, let\'s skip that one. We\'ll come back to it later. Your next card is " + nextCard;
@@ -156,6 +192,12 @@ var skipIntentFunction = function(request, response) {
 
 var repeatIntentFunction = function(request, response) {
     console.log("Repeat intent function triggered");
+    if (currentCardBank === null) {
+        var prompt = "You have not started a set yet. Tell me a set name to get started.";
+        var reprompt = "Tell me a set name to get started."
+        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        return true;
+    }
     var currentCard = currentCardBank.getNextCard();
     var prompt = "No problem, I'll repeat it. Your card is " + currentCard;
     var reprompt = "Your card is " + currentCard;
@@ -164,6 +206,13 @@ var repeatIntentFunction = function(request, response) {
     console.log(currentCardBank);
     return true;
 };
+
+var cancelIntentFunction = function(request, response) {
+    console.log("Cancel intent triggered");
+    response.say('Good work. Let\'s take a well deserved break.').shouldEndSession(true);
+    return true;
+};
+
 
 /*
 Intents
@@ -197,11 +246,11 @@ skill.intent('statusIntent', {
         '{how|where} {many|far|am|many more} {|do} {|I} {|have} {|left|remaining} {|now}'
     ]
 }, statusIntentFunction);
-skill.intent('AMAZON.CancelIntent', {}, cancelIntentFunction);
-skill.intent('AMAZON.StopIntent', {}, cancelIntentFunction);
 skill.intent('AMAZON.YesIntent', {}, correctIntentFunction);
 skill.intent('AMAZON.NoIntent', {}, wrongIntentFunction);
 skill.intent('AMAZON.NextIntent', {}, skipIntentFunction);
 skill.intent('AMAZON.RepeatIntent', {}, repeatIntentFunction);
+skill.intent('AMAZON.CancelIntent', {}, cancelIntentFunction);
+skill.intent('AMAZON.StopIntent', {}, cancelIntentFunction);
 
 module.exports = skill;
