@@ -137,6 +137,19 @@ var statusIntentFunction = function(request, response) {
     return true;
 };
 
+var waitIntentFunction = function(request, response) {
+    console.log("Wait intent triggered");
+    if (currentCardBank === null) {
+        var prompt = "You have not started a set yet. Tell me a set name to get started.";
+        var reprompt = "Tell me a set name to get started."
+        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        return true;
+    }
+    var prompt = "Ok I'll give you a few more seconds to respond.";
+    var reprompt = "Please give an answer.";
+    response.say(prompt).reprompt(reprompt).shouldEndSession(false);
+    return true;
+}
 var correctIntentFunction = function(request, response) {
     console.log("Correct intent triggered");
     if (currentCardBank === null) {
@@ -255,6 +268,11 @@ skill.intent('statusIntent', {
         '{how|where|status} {many|far|am|many more} {|do} {|I} {|have} {|left|remaining} {|now}'
     ]
 }, statusIntentFunction);
+skill.intent('waitIntent', {
+    'utterances': [
+        '{wait|hold on|I\'m thinking|give me|let me think} {|for} {|a second|some time}'
+    ]
+}, waitIntentFunction);
 skill.intent('AMAZON.YesIntent', {}, correctIntentFunction);
 skill.intent('AMAZON.NoIntent', {}, wrongIntentFunction);
 skill.intent('AMAZON.NextIntent', {}, skipIntentFunction);
