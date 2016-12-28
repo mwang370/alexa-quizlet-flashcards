@@ -9,6 +9,7 @@ var Alexa = require('alexa-app');
 var skill = new Alexa.app('flashcards');
 var FlashcardsDataHelper = require('./flashcards_data_helper.js');
 var CardBank = require('./card_bank.js');
+var currentSetName = null;
 var currentSet = null;
 var currentCardBank = null;
 
@@ -23,10 +24,10 @@ var launchIntentFunction = function(request, response) {
 
 var startStudyingIntentFunction = function(request, response) {
     console.log("Start studying event triggered");
-    var setName = request.slot('SETNAME');
+    currentSetName = request.slot('SETNAME');
     var reprompt = 'Tell me a set name to begin studying';
     var accessToken = request.sessionDetails.accessToken;
-    if (_.isEmpty(setName)) {
+    if (_.isEmpty(currentSetName)) {
         var prompt = "I didn\'t hear a set name. Tell me a set name.";
         response.say(prompt).reprompt(reprompt).shouldEndSession(false);
         return true;
@@ -34,7 +35,7 @@ var startStudyingIntentFunction = function(request, response) {
         var flashcardsHelper = new FlashcardsDataHelper();
         flashcardsHelper.getSets(accessToken).then(function(allSets) {
             for (var i = 0; i < allSets.length; i++) {
-                if (allSets[i].title === setName) {
+                if (allSets[i].title === currentSetName) {
                     currentSet = allSets[i];
                 }
             }
@@ -49,10 +50,10 @@ var startStudyingIntentFunction = function(request, response) {
                 console.log("card bank: ");
                 console.log(currentCardBank);
                 var nextCard = currentCardBank.getNextCard();
-                var prompt = "I have just retrieved the set for " + setName + ". Lets get started. Your first card is " + nextCard;
+                var prompt = "I have just retrieved the set for " + currentSetName + ". Lets get started. Your first card is " + nextCard;
                 var reprompt = "Your first card is " + nextCard;
             } else {
-                prompt = "I could not retrieve the set for " + setName + ". Tell me another set name.";
+                prompt = "I could not retrieve the set for " + currentSetName + ". Tell me another set name.";
                 reprompt = "Tell me another set name.";
             }
             response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
@@ -145,13 +146,21 @@ var correctIntentFunction = function(request, response) {
         return true;
     }
     currentCardBank.gotCorrect();
-    var nextCard = currentCardBank.getNextCard();
-    var prompt = "Good Job! Your next card is " + nextCard;
-    var reprompt = "Your next card is " + nextCard;
-    response.say(prompt).reprompt(reprompt).shouldEndSession(false);
-    console.log("card bank: ");
-    console.log(currentCardBank);
-    return true;
+    console.log(currentCardBank.numCards);
+    if (currentCardBank.numCards === 0) {
+        // finished
+        var prompt = "Congratulations, you have finished the set for " + currentSetName +". Open flash cards again to review this set or to start studying another set.";
+        response.say(prompt).shouldEndSession(true);
+        return true;
+    } else {
+        var nextCard = currentCardBank.getNextCard();
+        var prompt = "Good Job! Your next card is " + nextCard;
+        var reprompt = "Your next card is " + nextCard;
+        response.say(prompt).reprompt(reprompt).shouldEndSession(false);
+        console.log("card bank: ");
+        console.log(currentCardBank);
+        return true;
+    }
 };
 
 var wrongIntentFunction = function(request, response) {
@@ -243,7 +252,7 @@ skill.intent('flipSidesIntent', {
 }, flipSidesIntentFunction);
 skill.intent('statusIntent', {
     'utterances': [
-        '{how|where} {many|far|am|many more} {|do} {|I} {|have} {|left|remaining} {|now}'
+        '{how|where|status} {many|far|am|many more} {|do} {|I} {|have} {|left|remaining} {|now}'
     ]
 }, statusIntentFunction);
 skill.intent('AMAZON.YesIntent', {}, correctIntentFunction);
