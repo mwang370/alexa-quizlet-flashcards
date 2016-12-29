@@ -21,7 +21,7 @@ function CardBank() {
     };
 
     this.shuffle = function() {
-        var j, x, i;
+        var i, j, x;
         for (i = this.cards.length; i; i--) {
             j = Math.floor(Math.random() * i);
             x = this.cards[i - 1];
