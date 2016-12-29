@@ -5,7 +5,12 @@ Github: www.github.com/mwang370
 Date: 12/28/16
 */
 
-'use strict'
+'use strict';
+
+/*
+Declarations
+*/
+var _ = require('lodash');
 
 function Prompts() {
 
@@ -23,8 +28,11 @@ function Prompts() {
         'name.';
     this.startStudyingReprompt1 = 'Tell me a set name to begin studying';
     this.startStudyingPrompt2 = function(currentSetName, nextCard) {
-        return 'I have just retrieved the set for ' + currentSetName +
-            '. Lets get started. Your first card is ' + nextCard + '.';
+        var prompt = _.template('I have just retrieved the set for ${currentSetName}. Let\'s get started. Your first card is ${nextCard}.');
+        return prompt({
+            currentSetName: currentSetName,
+            nextCard: nextCard
+        });
     };
     this.startStudyingReprompt2 = function(nextCard) {
         return 'Your first card is ' + nextCard + '.';
@@ -115,7 +123,7 @@ function Prompts() {
     this.wrongPrompt = function(nextCard) {
         return 'Almost. We\'ll come back to that one later. Your next ' +
             'card is ' + nextCard + '.';
-    }
+    };
 
     /*
     skipIntent prompts
@@ -169,7 +177,7 @@ function Prompts() {
     generic prompts
     */
     this.accountLinkPrompt = 'Your Quizlet account is not linked. Please ' +
-        'use the Alexa app to link the account.'
+        'use the Alexa app to link the account.';
     this.currentCardReprompt = function(currentCard) {
         return 'Your current card is ' + currentCard + '.';
     };
@@ -183,14 +191,15 @@ function Prompts() {
     /*
     respone card
     */
-    this.responseCard = function(currentSetName, numFinished,
-                                    numCardsLeft, percentFinished) {
-        return 'Set Studied: ' + currentSetName,
-            'Cards Finished: ' + numFinished +
+    this.responseCardHeader = function(currentSetName) {
+        return 'Set Studied: ' + currentSetName;
+    };
+    this.responseCardBody = function(numFinished, numCardsLeft, percentFinished) {
+        return 'Cards Finished: ' + numFinished +
             '\nCards Left: ' + numCardsLeft +
             '\nGood work! You made it through ' + percentFinished +
             '% of the cards in this set.';
     };
-};
+}
 
-module.exports = Prompts
+module.exports = Prompts;

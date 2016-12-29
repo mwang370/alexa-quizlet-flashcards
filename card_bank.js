@@ -31,13 +31,14 @@ function CardBank() {
     };
 
     this.flipSides = function() {
-        for (var i = 0; i < this.cards.length; i++) {
-            var x = this.cards[i][0];
+        var i, x;
+        for (i = 0; i < this.cards.length; i++) {
+            x = this.cards[i][0];
             this.cards[i][0] = this.cards[i][1];
             this.cards[i][1] = x;
         }
-        for (var i = 0; i < this.finished.length; i++) {
-            var x = this.finished[i][0];
+        for (i = 0; i < this.finished.length; i++) {
+            x = this.finished[i][0];
             this.finished[i][0] = this.finished[i][1];
             this.finished[i][1] = x;
         }
@@ -75,6 +76,6 @@ function CardBank() {
         }
         this.shuffle();
     };
-};
+}
 
 module.exports = CardBank;

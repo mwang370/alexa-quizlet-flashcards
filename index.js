@@ -196,10 +196,10 @@ var knowIntentFunction = function(request, response) {
             var percentFinished = currentCardBank.getPercentFinished();
             var numFinished = currentCardBank.numFinished;
             var numCardsLeft = currentCardBank.numCards;
-            response.card(prompts.responseCard(currentSetName,
-                                                    numFinished,
-                                                    numCardsLeft,
-                                                    percentFinished));
+            response.card(prompts.responseCardHeader(currentSetName),
+                                prompts.responseCardBody(numFinished,
+                                                            numCardsLeft,
+                                                            percentFinished));
         }
         response.say(prompts.finishedPrompt(currentSetName))
             .shouldEndSession(true)
@@ -252,10 +252,10 @@ var correctIntentFunction = function(request, response) {
             var percentFinished = currentCardBank.getPercentFinished();
             var numFinished = currentCardBank.numFinished;
             var numCardsLeft = currentCardBank.numCards;
-            response.card(prompts.responseCard(currentSetName,
-                                                    numFinished,
-                                                    numCardsLeft,
-                                                    percentFinished));
+            response.card(prompts.responseCardHeader(currentSetName),
+                                prompts.responseCardBody(numFinished,
+                                                            numCardsLeft,
+                                                            percentFinished));
         }
         response.say(prompts.finishedPrompt(currentSetName))
             .shouldEndSession(true)
@@ -387,7 +387,7 @@ var helpIntentFunction = function(request, response) {
             response.say(prompts.helpPrompt4)
                 .reprompt()
                 .shouldEndSession(false)
-                .send()
+                .send();
             return true;
         }
     }
@@ -396,11 +396,12 @@ var helpIntentFunction = function(request, response) {
 var stopIntentFunction = function(request, response) {
     if (currentSet !== null) {
         var percentFinished = currentCardBank.getPercentFinished();
-        response.card('Set Studied: ' + currentSetName,
-            'Cards Finished: ' + currentCardBank.numFinished +
-            '\nCards Left: ' + currentCardBank.numCards +
-            '\nGood work! You made it through ' + percentFinished +
-            '% of the cards in this set.');
+        var numFinished = currentCardBank.numFinished;
+        var numCardsLeft = currentCardBank.numCards;
+        response.card(prompts.responseCardHeader(currentSetName),
+                            prompts.responseCardBody(numFinished,
+                                                        numCardsLeft,
+                                                        percentFinished));
     }
     isAnswering = true;
     response.say(prompts.stopPrompt)
