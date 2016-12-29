@@ -34,47 +34,55 @@ var launchIntentFunction = function(request, response) {
 var startStudyingIntentFunction = function(request, response) {
     currentSetName = request.slot('SETNAME');
     var accessToken = request.sessionDetails.accessToken;
-    if (_.isEmpty(currentSetName)) {
-        response.say(prompts.startStudyingPrompt1)
-            .reprompt(prompts.startStudyingReprompt1)
-            .shouldEndSession(false);
+    if (accessToken === null) {
+        response.linkAccount()
+            .shouldEndSession(true)
+            .say(prompts.accountLinkPrompt)
+            .send();
         return true;
     } else {
-        var flashcardsHelper = new FlashcardsDataHelper();
-        flashcardsHelper.getSets(accessToken).then(function(allSets) {
-            for (var i = 0; i < allSets.length; i++) {
-                if (allSets[i].title === currentSetName) {
-                    currentSet = allSets[i];
+        if (_.isEmpty(currentSetName)) {
+            response.say(prompts.startStudyingPrompt1)
+                .reprompt(prompts.startStudyingReprompt1)
+                .shouldEndSession(false);
+            return true;
+        } else {
+            var flashcardsHelper = new FlashcardsDataHelper();
+            flashcardsHelper.getSets(accessToken).then(function(allSets) {
+                for (var i = 0; i < allSets.length; i++) {
+                    if (allSets[i].title === currentSetName) {
+                        currentSet = allSets[i];
+                    }
                 }
-            }
-            if (currentSet !== null) {
-                currentCardBank = new CardBank();
-                for (var card in currentSet.terms) {
-                    var term = currentSet.terms[card].term;
-                    var definition = currentSet.terms[card].definition;
-                    currentCardBank.addCard(term, definition);
+                if (currentSet !== null) {
+                    currentCardBank = new CardBank();
+                    for (var card in currentSet.terms) {
+                        var term = currentSet.terms[card].term;
+                        var definition = currentSet.terms[card].definition;
+                        currentCardBank.addCard(term, definition);
+                    }
+                    currentCardBank.shuffle();
+                    var nextCard = currentCardBank.getNextCard();
+                    response.say(prompts.startStudyingPrompt2(currentSetName,
+                                                                    nextCard))
+                        .reprompt(prompts.startStudyingReprompt2(nextCard))
+                        .shouldEndSession(false)
+                        .send();
+                } else {
+                    response.say(prompts.startStudyingPrompt3(currentSetName))
+                        .reprompt(prompts.startStudyingReprompt3)
+                        .shouldEndSession(false)
+                        .send();
                 }
-                currentCardBank.shuffle();
-                var nextCard = currentCardBank.getNextCard();
-                response.say(prompts.startStudyingPrompt2(currentSetName,
-                                                                nextCard))
-                    .reprompt(prompts.startStudyingReprompt2(nextCard))
+            }).catch(function(err) {
+                console.log(err.statusCode);
+                response.say(prompts.startStudyingPrompt4)
+                    .reprompt(prompts.startStudyingPrompt4)
                     .shouldEndSession(false)
                     .send();
-            } else {
-                response.say(prompts.startStudyingPrompt3(currentSetName))
-                    .reprompt(prompts.startStudyingReprompt3)
-                    .shouldEndSession(false)
-                    .send();
-            }
-        }).catch(function(err) {
-            console.log(err.statusCode);
-            response.say(prompts.startStudyingPrompt4)
-                .reprompt(prompts.startStudyingPrompt4)
-                .shouldEndSession(false)
-                .send();
-        });
-        return false;
+            });
+            return false;
+        }
     }
 };
 

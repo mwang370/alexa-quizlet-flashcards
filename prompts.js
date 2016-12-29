@@ -141,6 +141,8 @@ function Prompts() {
     /*
     generic prompts
     */
+    this.accountLinkPrompt = 'Your Quizlet account is not linked. Please ' +
+        'use the Alexa app to link the account.'
     this.currentCardPrompt = function(currentCard) {
         return 'Your current card is ' + currentCard + '.';
     };
