@@ -171,11 +171,12 @@ var knowIntentFunction = function(request, response) {
         // finished
         if (currentSet !== null) {
             var percentFinished = currentCardBank.getPercentFinished();
-            response.card("Set Studied: " + currentSetName,
-                "Cards Finished: " + currentCardBank.numFinished +
-                "\nCards Left: " + currentCardBank.numCards +
-                "\nGood work! You made it through " + percentFinished +
-                "% of the cards in this set.");
+            var numFinished = currentCardBank.numFinished;
+            var numCardsLeft = currentCardBank.numCards;
+            response.card(prompts.responseCard(currentSetName,
+                                                    numFinished,
+                                                    numCardsLeft,
+                                                    percentFinished));
         }
         response.say(prompts.finishedPrompt(currentSetName))
             .shouldEndSession(true)
@@ -222,11 +223,10 @@ var correctIntentFunction = function(request, response) {
         // finished
         if (currentSet !== null) {
             var percentFinished = currentCardBank.getPercentFinished();
-            response.card("Set Studied: " + currentSetName,
-                "Cards Finished: " + currentCardBank.numFinished +
-                "\nCards Left: " + currentCardBank.numCards +
-                "\nGood work! You made it through " + percentFinished +
-                "% of the cards in this set.");
+            response.card(prompts.responseCard(currentSetName,
+                                                    numFinished,
+                                                    numCardsLeft,
+                                                    percentFinished));
         }
         response.say(prompts.finishedPrompt(currentSetName))
             .shouldEndSession(true)
@@ -316,7 +316,8 @@ skill.intent('startStudyingIntent', {
         'SETNAME': 'SETNAMES'
     },
     'utterances': [
-        '{|start|open|begin|study} {|studying|reviewing} {|flashcards|cards|set|words} {|for} {-|SETNAME}'
+        '{|start|open|begin|study} {|studying|reviewing} ' +
+            '{|flashcards|cards|set|words} {|for} {-|SETNAME}'
     ]
 }, startStudyingIntentFunction);
 skill.intent('answerIntent', {
@@ -331,17 +332,20 @@ skill.intent('shuffleIntent', {
 }, shuffleIntentFunction);
 skill.intent('flipSidesIntent', {
     'utterances': [
-        '{flip|use the opposite|change|use the other} {|sides} {|the|of} {|card}'
+        '{flip|use the opposite|change|use the other} {|sides} {|the|of} ' +
+            '{|card}'
     ]
 }, flipSidesIntentFunction);
 skill.intent('statusIntent', {
     'utterances': [
-        '{how|where|status} {many|far|am|many more} {|do} {|I} {|have} {|left|remaining} {|now}'
+        '{how|where|status} {many|far|am|many more} {|do} {|I} {|have} ' +
+            '{|left|remaining} {|now}'
     ]
 }, statusIntentFunction);
 skill.intent('waitIntent', {
     'utterances': [
-        '{wait|hold on|I\'m thinking|give me|let me think} {|for} {|a second|some time}'
+        '{wait|hold on|I\'m thinking|give me|let me think} {|for} ' +
+            '{|a second|some time}'
     ]
 }, waitIntentFunction);
 skill.intent('knowIntent', {
