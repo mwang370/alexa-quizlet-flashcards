@@ -27,6 +27,6 @@ function FlashcardsDataHelper() {
         };
         return requestPromise(options)
     };
-}
+};
 
 module.exports = FlashcardsDataHelper;

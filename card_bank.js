@@ -11,8 +11,8 @@ function CardBank() {
 
     this.numCards = 0;
     this.numFinished = 0;
-    this.cards = new Array();
-    this.finished = new Array();
+    this.cards = [];
+    this.finished = [];
 
     this.addCard = function(front, back) {
         var newCard = new Array(front, back);
@@ -64,7 +64,17 @@ function CardBank() {
     this.getPercentFinished = function() {
         return Math.round(this.numFinished * 100 /
                             (this.numFinished + this.numCards));
-    }
+    };
+
+    this.restart = function() {
+        var i = 0;
+        while(i < this.finished.length) {
+            this.cards.push(this.finished.shift());
+            this.numFinished--;
+            this.numCards++;
+        }
+        this.shuffle();
+    };
 };
 
 module.exports = CardBank;

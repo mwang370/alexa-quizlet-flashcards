@@ -128,10 +128,37 @@ function Prompts() {
     /*
     repreatIntent prompts
     */
-    this.repeatPrompt = function(currentCart) {
+    this.repeatPrompt = function(currentCard) {
         return 'No problem, I\'ll repeat it. Your current card is ' +
             currentCard + '.';
     };
+
+    /*
+    startOverIntent prompts
+    */
+    this.startOverPrompt = function(currentCard) {
+        return 'OK. I\'ll shuffle all the cards for this set and start over. ' +
+            'Your first card is ' + currentCard + '.';
+    };
+
+    /*
+    helpIntentPrompts
+    */
+    this.helpPrompt1 = function(setNames) {
+        return 'Start by asking me to study a set on Quizlet. I am '
+            + 'currently able to study the following sets: ' + setNames.join() +
+            '.';
+    };
+    this.helpPrompt2 = 'Start by asking me to study a set on Quizlet.';
+    this.helpReprompt2 = 'Tell me a set name to start studying.';
+    this.helpPrompt3 = function(currentCard) {
+        return 'To continue, give your best answer to this card. Begin your ' +
+            'response with the phrase, The answer is, for optimal results. ' +
+            'Your current ' + 'card is ' + currentCard + '.';
+    };
+    this.helpPrompt4 = 'To continue, say yes or no depending on whether ' +
+        'you got the last card correct.';
+    this.helpReprompt4 = 'Say yes or no to continue';
 
     /*
     stopIntent prompts
@@ -143,11 +170,8 @@ function Prompts() {
     */
     this.accountLinkPrompt = 'Your Quizlet account is not linked. Please ' +
         'use the Alexa app to link the account.'
-    this.currentCardPrompt = function(currentCard) {
+    this.currentCardReprompt = function(currentCard) {
         return 'Your current card is ' + currentCard + '.';
-    };
-    this.nextCardPrompt = function(nextCard) {
-        return 'Your next card is ' + nextCard + '.';
     };
     this.finishedPrompt = function(currentSetName) {
         return 'Congratulations, you have finished the set for ' +
@@ -161,11 +185,11 @@ function Prompts() {
     */
     this.responseCard = function(currentSetName, numFinished,
                                     numCardsLeft, percentFinished) {
-        return "Set Studied: " + currentSetName,
-            "Cards Finished: " + numFinished +
-            "\nCards Left: " + numCardsLeft +
-            "\nGood work! You made it through " + percentFinished +
-            "% of the cards in this set.";
+        return 'Set Studied: ' + currentSetName,
+            'Cards Finished: ' + numFinished +
+            '\nCards Left: ' + numCardsLeft +
+            '\nGood work! You made it through ' + percentFinished +
+            '% of the cards in this set.';
     };
 };
 
