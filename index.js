@@ -7,8 +7,10 @@ Declarations
 var _ = require('lodash');
 var Alexa = require('alexa-app');
 var skill = new Alexa.app('flashcards');
-var FlashcardsDataHelper = require('./flashcards_data_helper.js');
-var CardBank = require('./card_bank.js');
+var Prompts = require('./prompts');
+var prompts = new Prompts();
+var FlashcardsDataHelper = require('./flashcards_data_helper');
+var CardBank = require('./card_bank');
 var currentSetName = null;
 var currentSet = null;
 var currentCardBank = null;
@@ -17,19 +19,18 @@ var currentCardBank = null;
 Intent Helper Methods
 */
 var launchIntentFunction = function(request, response) {
-    var prompt = 'Ready to study? To begin, tell me the name of a set';
-    var reprompt = 'I didn\'t hear a set name. Tell me a set name to begin studying';
-    response.say(prompt).reprompt(reprompt).shouldEndSession(false);
+    response.say(prompts.launchPrompt)
+        .reprompt(prompts.launchReprompt)
+        .shouldEndSession(false);
 };
 
 var startStudyingIntentFunction = function(request, response) {
-    console.log("Start studying event triggered");
     currentSetName = request.slot('SETNAME');
-    var reprompt = 'Tell me a set name to begin studying';
     var accessToken = request.sessionDetails.accessToken;
     if (_.isEmpty(currentSetName)) {
-        var prompt = "I didn\'t hear a set name. Tell me a set name.";
-        response.say(prompt).reprompt(reprompt).shouldEndSession(false);
+        response.say(prompts.startStudyingPrompt1)
+            .reprompt(prompts.startStudyingReprompt1)
+            .shouldEndSession(false);
         return true;
     } else {
         var flashcardsHelper = new FlashcardsDataHelper();
@@ -47,263 +48,262 @@ var startStudyingIntentFunction = function(request, response) {
                     currentCardBank.addCard(term, definition);
                 }
                 currentCardBank.shuffle();
-                console.log("card bank: ");
-                console.log(currentCardBank);
                 var nextCard = currentCardBank.getNextCard();
-                var prompt = "I have just retrieved the set for " + currentSetName + ". Lets get started. Your first card is " + nextCard;
-                var reprompt = "Your first card is " + nextCard;
+                response.say(prompts.startStudyingPrompt2(currentSetName,
+                                                                nextCard))
+                    .reprompt(prompts.startStudyingReprompt2(nextCard))
+                    .shouldEndSession(false)
+                    .send();
             } else {
-                prompt = "I could not retrieve the set for " + currentSetName + ". Tell me another set name.";
-                reprompt = "Tell me another set name.";
+                response.say(prompts.startStudyingPrompt3(currentSetName))
+                    .reprompt(prompts.startStudyingReprompt3)
+                    .shouldEndSession(false)
+                    .send();
             }
-            response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
         }).catch(function(err) {
             console.log(err.statusCode);
-            var prompt = 'I could not retrieve the set. Try repeating the set name or start another set.';
-          response.say(prompt).reprompt(prompt).shouldEndSession(false).send();
+            response.say(prompts.startStudyingPrompt4)
+                .reprompt(prompts.startStudyingPrompt4)
+                .shouldEndSession(false)
+                .send();
         });
         return false;
     }
 };
 
 var answerIntentFunction = function(request, response) {
-    console.log("Answer intent triggered");
     if (currentCardBank === null) {
-        var prompt = "You have not started a set yet. Tell me a set name to get started.";
-        var reprompt = "Tell me a set name to get started."
-        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        response.say(prompts.nullSetPrompt)
+            .reprompt(prompts.nullSetReprompt)
+            .shouldEndSession(false)
+            .send();
         return true;
     }
     var currentCard = currentCardBank.getNextCard();
     var currentCardFlipSide = currentCardBank.getNextCardFlipSide();
-    var prompt = "The correct answer was " + currentCardFlipSide + ". Did you get it correct?";
-    var reprompt = "Did you get it correct?";
-    response.say(prompt).reprompt(reprompt).shouldEndSession(false);
+    response.say(prompts.answerPrompt(currentCardFlipSide))
+        .reprompt(prompts.answerReprompt)
+        .shouldEndSession(false)
+        .send();
     return true;
 };
 
 var shuffleIntentFunction = function(request, response) {
-    console.log("Shuffle intent triggered");
     if (currentCardBank === null) {
-        var prompt = "You have not started a set yet. Tell me a set name to get started.";
-        var reprompt = "Tell me a set name to get started."
-        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        response.say(prompts.nullSetPrompt)
+            .reprompt(prompts.nullSetReprompt)
+            .shouldEndSession(false)
+            .send();
         return true;
     }
     currentCardBank.shuffle();
     var nextCard = currentCardBank.getNextCard();
-    var prompt = "OK. I just shuffled the cards. Your next card is " + nextCard;
-    var reprompt = "Your next card is " + nextCard;
-    response.say(prompt).reprompt(reprompt).shouldEndSession(false);
-    console.log("card bank: ");
-    console.log(currentCardBank);
+    response.say(prompts.shufflePrompt(nextCard))
+        .reprompt(prompts.nextCardPrompt(nextCard))
+        .shouldEndSession(false)
+        .send();
     return true;
 };
 
 var flipSidesIntentFunction = function(request, response) {
-    console.log("Flip sides intent triggered");
     if (currentCardBank === null) {
-        var prompt = "You have not started a set yet. Tell me a set name to get started.";
-        var reprompt = "Tell me a set name to get started."
-        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        response.say(prompts.nullSetPrompt)
+            .reprompt(prompts.nullSetReprompt)
+            .shouldEndSession(false)
+            .send();
         return true;
     }
     currentCardBank.flipSides();
     currentCardBank.shuffle();
     var nextCard = currentCardBank.getNextCard();
-    var prompt = "OK. We are now using the other side of the cards. Your next card is " + nextCard;
-    var reprompt = "Your next card is " + nextCard;
-    response.say(prompt).reprompt(reprompt).shouldEndSession(false);
-    console.log("card bank: ");
-    console.log(currentCardBank);
+    response.say(prompts.flipSidesPrompt(nextCard))
+        .reprompt(prompts.nextCardPrompt(nextCard))
+        .shouldEndSession(false)
+        .send();
     return true;
 };
 
 var statusIntentFunction = function(request, response) {
-    console.log("Status intent triggered");
     if (currentCardBank === null) {
-        var prompt = "You have not started a set yet. Tell me a set name to get started.";
-        var reprompt = "Tell me a set name to get started."
-        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        response.say(prompts.nullSetPrompt)
+            .reprompt(prompts.nullSetReprompt)
+            .shouldEndSession(false)
+            .send();
         return true;
     }
     var currentCard = currentCardBank.getNextCard();
-    var percentFinished = Math.round(currentCardBank.numFinished * 100 / (currentCardBank.numFinished + currentCardBank.numCards));
-    var prompt = "You are currently " + percentFinished +
-    " percent through with the set. You have " + currentCardBank.numCards +
-    " cards remaining. Your current card is " + currentCard;
-    var reprompt = "Your current card is " + currentCard;
-    response.say(prompt).reprompt(reprompt).shouldEndSession(false);
+    var percentFinished = currentCardBank.getPercentFinished();
+    var numCardsLeft = currentCardBank.numCards;
+    response.say(prompts.statusIntentPrompt(percentFinished,
+                                                numCardsLeft,
+                                                currentCard))
+        .reprompt(prompts.currentCardPrompt(currentCard))
+        .shouldEndSession(false)
+        .send();
     return true;
 };
 
 var waitIntentFunction = function(request, response) {
-    console.log("Wait intent triggered");
     if (currentCardBank === null) {
-        var prompt = "You have not started a set yet. Tell me a set name to get started.";
-        var reprompt = "Tell me a set name to get started."
-        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        response.say(prompts.nullSetPrompt)
+            .reprompt(prompts.nullSetReprompt)
+            .shouldEndSession(false)
+            .send();
         return true;
     }
-    var prompt = "Ok I'll give you a few more seconds to respond.";
-    var reprompt = "Please give an answer.";
-    response.say(prompt).reprompt(reprompt).shouldEndSession(false);
+    response.say(prompts.waitPrompt)
+        .reprompt(prompts.waitReprompt)
+        .shouldEndSession(false)
+        .send();
     return true;
 };
 
 var knowIntentFunction = function(request, response) {
-    console.log("Correct intent triggered");
     if (currentCardBank === null) {
-        var prompt = "You have not started a set yet. Tell me a set name to get started.";
-        var reprompt = "Tell me a set name to get started."
-        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        response.say(prompts.nullSetPrompt)
+            .reprompt(prompts.nullSetReprompt)
+            .shouldEndSession(false)
+            .send();
         return true;
     }
     currentCardBank.gotCorrect();
-    console.log(currentCardBank.numCards);
     if (currentCardBank.numCards === 0) {
         // finished
-        var prompt = "Congratulations, you have finished the set for " + currentSetName +". Open flash cards again to review this set or to start studying another set.";
         if (currentSet !== null) {
-            var percentFinished = Math.round(currentCardBank.numFinished * 100 / (currentCardBank.numFinished + currentCardBank.numCards));
+            var percentFinished = currentCardBank.getPercentFinished();
             response.card("Set Studied: " + currentSetName,
                 "Cards Finished: " + currentCardBank.numFinished +
                 "\nCards Left: " + currentCardBank.numCards +
                 "\nGood work! You made it through " + percentFinished +
                 "% of the cards in this set.");
         }
-        response.say(prompt).shouldEndSession(true);
+        response.say(prompts.finishedPrompt(currentSetName))
+            .shouldEndSession(true)
+            .send();
         return true;
     } else {
         var nextCard = currentCardBank.getNextCard();
-        var prompt = "Ok. I'll move that card to the finished pile. Your next card is " + nextCard;
-        var reprompt = "Your next card is " + nextCard;
-        response.say(prompt).reprompt(reprompt).shouldEndSession(false);
-        console.log("card bank: ");
-        console.log(currentCardBank);
+        response.say(prompts.knowPrompt(nextCard))
+            .reprompt(prompts.nextCardPrompt(nextCard))
+            .shouldEndSession(false)
+            .send();
         return true;
     }
 };
 
 var dontKnowIntentFunction = function(request, response) {
-    console.log("Don't know intent triggered");
     if (currentCardBank === null) {
-        var prompt = "You have not started a set yet. Tell me a set name to get started.";
-        var reprompt = "Tell me a set name to get started."
-        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        response.say(prompts.nullSetPrompt)
+            .reprompt(prompts.nullSetReprompt)
+            .shouldEndSession(false)
+            .send();
         return true;
     }
     var currentCardFlipSide = currentCardBank.getNextCardFlipSide();
     currentCardBank.gotWrong();
     var nextCard = currentCardBank.getNextCard();
-    var prompt = "No worries. The answer was " + currentCardFlipSide
-    + ". We'll come back to that one again later. Your next card is "
-    + nextCard;
-    var reprompt = "Your next card is " + nextCard;
-    response.say(prompt).reprompt(reprompt).shouldEndSession(false);
-    console.log("card bank: ");
-    console.log(currentCardBank);
+    response.say(prompts.dontKnowPrompt(currentCardFlipSide, nextCard))
+        .reprompt(prompts.nextCardPrompt(nextCard))
+        .shouldEndSession(false)
+        .send();
     return true;
 };
 
 var correctIntentFunction = function(request, response) {
-    console.log("Correct intent triggered");
     if (currentCardBank === null) {
-        var prompt = "You have not started a set yet. Tell me a set name to get started.";
-        var reprompt = "Tell me a set name to get started."
-        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        response.say(prompts.nullSetPrompt)
+            .reprompt(prompts.nullSetReprompt)
+            .shouldEndSession(false)
+            .send();
         return true;
     }
     currentCardBank.gotCorrect();
-    console.log(currentCardBank.numCards);
     if (currentCardBank.numCards === 0) {
         // finished
-        var prompt = "Congratulations, you have finished the set for " + currentSetName +". Open flash cards again to review this set or to start studying another set.";
         if (currentSet !== null) {
-            var percentFinished = Math.round(currentCardBank.numFinished * 100 / (currentCardBank.numFinished + currentCardBank.numCards));
+            var percentFinished = currentCardBank.getPercentFinished();
             response.card("Set Studied: " + currentSetName,
                 "Cards Finished: " + currentCardBank.numFinished +
                 "\nCards Left: " + currentCardBank.numCards +
                 "\nGood work! You made it through " + percentFinished +
                 "% of the cards in this set.");
         }
-        response.say(prompt).shouldEndSession(true);
+        response.say(prompts.finishedPrompt(currentSetName))
+            .shouldEndSession(true)
+            .send();
         return true;
     } else {
         var nextCard = currentCardBank.getNextCard();
-        var prompt = "Good Job! Your next card is " + nextCard;
-        var reprompt = "Your next card is " + nextCard;
-        response.say(prompt).reprompt(reprompt).shouldEndSession(false);
-        console.log("card bank: ");
-        console.log(currentCardBank);
+        response.say(prompts.correctPrompt(nextCard))
+            .reprompt(prompts.nextCardPrompt(nextCard))
+            .shouldEndSession(false)
+            .send();
         return true;
     }
 };
 
 var wrongIntentFunction = function(request, response) {
-    console.log("Wrong intent function triggered");
     if (currentCardBank === null) {
-        var prompt = "You have not started a set yet. Tell me a set name to get started.";
-        var reprompt = "Tell me a set name to get started."
-        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        response.say(prompts.nullSetPrompt)
+            .reprompt(prompts.nullSetReprompt)
+            .shouldEndSession(false)
+            .send();
         return true;
     }
     currentCardBank.gotWrong();
     var nextCard = currentCardBank.getNextCard();
-    var prompt = "Almost. We\'ll come back to that one later. Your next card is " + nextCard;
-    var reprompt = "Your next card is " + nextCard;
-    response.say(prompt).reprompt(reprompt).shouldEndSession(false);
-    console.log("card bank: ");
-    console.log(currentCardBank);
+    response.say(prompts.wrongPrompt(nextCard))
+        .reprompt(prompts.nextCardPrompt(nextCard))
+        .shouldEndSession(false)
+        .send();
     return true;
 };
 
 var skipIntentFunction = function(request, response) {
-    console.log("Skip intent function triggered");
     if (currentCardBank === null) {
-        var prompt = "You have not started a set yet. Tell me a set name to get started.";
-        var reprompt = "Tell me a set name to get started."
-        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        response.say(prompts.nullSetPrompt)
+            .reprompt(prompts.nullSetReprompt)
+            .shouldEndSession(false)
+            .send();
         return true;
     }
     currentCardBank.gotWrong();
     var nextCard = currentCardBank.getNextCard();
-    var prompt = "OK, let\'s skip that one. We\'ll come back to it later. Your next card is " + nextCard;
-    var reprompt = "Your next card is " + nextCard;
-    response.say(prompt).reprompt(reprompt).shouldEndSession(false);
-    console.log("card bank: ");
-    console.log(currentCardBank);
+    response.say(prompts.skipPrompt(nextCard))
+        .reprompt(prompts.nextCardPrompt(nextCard))
+        .shouldEndSession(false)
+        .send();
     return true;
 };
 
 var repeatIntentFunction = function(request, response) {
-    console.log("Repeat intent function triggered");
     if (currentCardBank === null) {
-        var prompt = "You have not started a set yet. Tell me a set name to get started.";
-        var reprompt = "Tell me a set name to get started."
-        response.say(prompt).reprompt(reprompt).shouldEndSession(false).send();
+        response.say(prompts.nullSetPrompt)
+            .reprompt(prompts.nullSetReprompt)
+            .shouldEndSession(false)
+            .send();
         return true;
     }
     var currentCard = currentCardBank.getNextCard();
-    var prompt = "No problem, I'll repeat it. Your card is " + currentCard;
-    var reprompt = "Your card is " + currentCard;
-    response.say(prompt).reprompt(reprompt).shouldEndSession(false);
-    console.log("card bank: ");
-    console.log(currentCardBank);
+    response.say(prompts.repeatPrompt(currentCard))
+        .reprompt(prompts.currentCardPrompt(currentCard))
+        .shouldEndSession(false)
+        .send();
     return true;
 };
 
 var stopIntentFunction = function(request, response) {
-    console.log("Cancel intent triggered");
     if (currentSet !== null) {
-        var percentFinished = Math.round(currentCardBank.numFinished * 100 / (currentCardBank.numFinished + currentCardBank.numCards));
+        var percentFinished = currentCardBank.getPercentFinished();
         response.card("Set Studied: " + currentSetName,
             "Cards Finished: " + currentCardBank.numFinished +
             "\nCards Left: " + currentCardBank.numCards +
             "\nGood work! You made it through " + percentFinished +
             "% of the cards in this set.");
     }
-    response.say('Good work. Let\'s take a well deserved break.').shouldEndSession(true);
+    response.say(prompts.stopPrompt)
+        .shouldEndSession(true)
+        .send();
     return true;
 };
 
