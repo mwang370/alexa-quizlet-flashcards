@@ -1,9 +1,16 @@
+/*
+Author: Michael Wang
+Email: mwang370 (at) gatech (dot) edu
+Github: www.github.com/mwang370
+Date: 12/28/16
+*/
+
 'use strict';
-module.change_code = 1;
 
 /*
 Declarations
 */
+module.change_code = 1;
 var _ = require('lodash');
 var Alexa = require('alexa-app');
 var skill = new Alexa.app('flashcards');

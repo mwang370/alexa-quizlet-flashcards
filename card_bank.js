@@ -1,3 +1,10 @@
+/*
+Author: Michael Wang
+Email: mwang370 (at) gatech (dot) edu
+Github: www.github.com/mwang370
+Date: 12/28/16
+*/
+
 'use strict';
 
 function CardBank() {
