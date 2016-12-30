@@ -197,8 +197,8 @@ function Prompts() {
     helpIntentPrompts
     */
     this.helpPrompt1 = function(setNames) {
-        var prompt = _.template('Start by asking me to study a set on Quizlet. \
-            I am currently able to study the following sets: ${setNames}. \
+        var prompt = _.template('Start by asking me to study a set made on \
+            Quizlet. I am currently able to study the following sets: ${setNames}. \
             What set would you like? If you wish to stop studying, say, stop.');
         return prompt({
             setNames: setNames.join()

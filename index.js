@@ -55,7 +55,7 @@ var startStudyingIntentFunction = function(request, response) {
             var flashcardsHelper = new FlashcardsDataHelper();
             flashcardsHelper.getSets(accessToken).then(function(allSets) {
                 for (var i = 0; i < allSets.length; i++) {
-                    if (allSets[i].title === currentSetName) {
+                    if (allSets[i].title.toLowerCase() === currentSetName) {
                         currentSet = allSets[i];
                     }
                 }
@@ -358,10 +358,8 @@ var helpIntentFunction = function(request, response) {
             var setNames = [];
             flashcardsHelper.getSets(accessToken).then(function(allSets) {
                 for (var i = 0; i < allSets.length; i++) {
-                    console.log(allSets[i].title);
-                    setNames.push(allSets[i].title);
+                    setNames.push(allSets[i].title.toLowerCase());
                 }
-                console.log(setNames);
                 response.say(prompts.helpPrompt1(setNames))
                     .reprompt(prompts.helpReprompt2)
                     .shouldEndSession(false)
