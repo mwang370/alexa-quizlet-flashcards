@@ -176,7 +176,7 @@ function Prompts() {
     */
     this.repeatPrompt = function(currentCard) {
         var prompt = _.template('No problem. I\'ll repeat it. Your current \
-            card is %{currentCard}.');
+            card is ${currentCard}.');
         return prompt({
             currentCard: currentCard
         });
