@@ -198,24 +198,27 @@ function Prompts() {
     */
     this.helpPrompt1 = function(setNames) {
         var prompt = _.template('Start by asking me to study a set on Quizlet. \
-            I am currently able to study the following sets: ${setNames}.');
+            I am currently able to study the following sets: ${setNames}. \
+            What set would you like? If you wish to stop studying, say, stop.');
         return prompt({
             setNames: setNames.join()
         });
     };
-    this.helpPrompt2 = 'Start by asking me to study a set on Quizlet.';
+    this.helpPrompt2 = 'Start by asking me to study a set on Quizlet. If you wish \
+        to stop studying, say, stop';
     this.helpReprompt2 = 'Tell me a set name to start studying.';
     this.helpPrompt3 = function(currentCard) {
         var prompt = _.template('To continue, give your best answer to this \
             card. Begin your response with the phrase, The answer is, for \
-            optimal results. Your current card is ${currentCard}.');
+            optimal results. Your current card is ${currentCard}. If you wish to \
+            stop studying, say, stop.');
         return prompt({
             currentCard: currentCard
         });
     };
     this.helpPrompt4 = 'To continue, say yes or no depending on whether you \
-        got the last card correct.';
-    this.helpReprompt4 = 'Say yes or no to continue';
+        got the last card correct. If you wish to stop studying, say, stop.';
+    this.helpReprompt4 = 'Say yes or no to continue.';
 
     /*
     stopIntent prompts
